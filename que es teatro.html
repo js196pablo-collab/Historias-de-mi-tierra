@@ -1,0 +1,633 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Detectives del teatro</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FFF6E8;
+    color: #3D2B24;
+    line-height: 1.6;
+}
+
+header {
+    background: #D94F4F;
+    color: #FFF6E8;
+    text-align: center;
+    padding: 38px 20px;
+    border-radius: 0 0 28px 28px;
+}
+
+header h1 {
+    margin: 0 0 8px;
+    font-size: 2.3rem;
+}
+
+header p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+    padding: 25px;
+}
+
+.card {
+    background: white;
+    padding: 28px;
+    margin-bottom: 25px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(61,43,36,.10);
+}
+
+.card h2 {
+    color: #E76F3C;
+    margin-top: 0;
+}
+
+.mission {
+    background: #F4C542;
+    padding: 18px;
+    border-radius: 14px;
+    margin-top: 18px;
+}
+
+.scene {
+    background: #FFFDF8;
+    border: 2px solid #E7DDC8;
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+.scene-title {
+    text-align: center;
+    color: #D94F4F;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.dialogue {
+    margin: 15px 0;
+    padding: 12px 15px;
+    border-radius: 10px;
+    background: #FFF6E8;
+}
+
+.character {
+    font-weight: bold;
+    color: #E76F3C;
+}
+
+.stage-direction {
+    color: #5E6B63;
+    font-style: italic;
+    background: #EAF4F5;
+    padding: 10px 14px;
+    border-left: 4px solid #4E9FAD;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.question {
+    margin-top: 25px;
+    padding: 20px;
+    background: #FFF6E8;
+    border-radius: 14px;
+}
+
+.question h3 {
+    margin-top: 0;
+    color: #3D2B24;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: white;
+    border: 2px solid #E7DDC8;
+    margin: 10px 0;
+    padding: 13px;
+    border-radius: 10px;
+    color: #3D2B24;
+}
+
+.option:hover {
+    border-color: #E76F3C;
+    background: #FFF9F0;
+}
+
+.option.correct {
+    background: #E1F0E2;
+    border-color: #5E9C62;
+}
+
+.option.wrong {
+    background: #FBE1DD;
+    border-color: #D94F4F;
+}
+
+.feedback {
+    display: none;
+    padding: 14px;
+    margin-top: 12px;
+    border-radius: 10px;
+}
+
+.correct-feedback {
+    background: #E1F0E2;
+    border-left: 5px solid #5E9C62;
+}
+
+.wrong-feedback {
+    background: #FBE1DD;
+    border-left: 5px solid #D94F4F;
+}
+
+.badges {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+}
+
+.badge {
+    background: #E7DDC8;
+    padding: 15px;
+    border-radius: 14px;
+    text-align: center;
+    min-width: 120px;
+    opacity: .45;
+    transition: .3s;
+}
+
+.badge.active {
+    opacity: 1;
+    background: #F4C542;
+    transform: translateY(-3px);
+}
+
+.badge-icon {
+    font-size: 2rem;
+}
+
+.score {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #E76F3C;
+    margin-top: 20px;
+}
+
+.final {
+    display: none;
+    text-align: center;
+    background: white;
+    border-top: 7px solid #F4C542;
+}
+
+.final h2 {
+    color: #D94F4F;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.reset {
+    background: #4E9FAD;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #6D5A50;
+}
+
+@media(max-width:600px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .badge {
+        min-width: 100px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔎 Detectives del teatro</h1>
+    <p>Descubre cómo está construida una escena dramática</p>
+</header>
+
+<div class="container">
+
+    <section class="card">
+
+        <h2>🕵️ Tu nueva misión</h2>
+
+        <p>
+            Una escena teatral es como un pequeño misterio.
+            Para comprenderla debemos descubrir qué elementos la hacen funcionar.
+        </p>
+
+        <div class="mission">
+            <strong>Tu objetivo:</strong><br>
+            Lee cuidadosamente la escena y encuentra cuatro pistas:
+            <strong>personajes, diálogo, acotaciones y conflicto.</strong>
+        </div>
+
+        <div class="badges">
+
+            <div class="badge" id="badge1">
+                <div class="badge-icon">👤</div>
+                <strong>Personajes</strong>
+            </div>
+
+            <div class="badge" id="badge2">
+                <div class="badge-icon">💬</div>
+                <strong>Diálogo</strong>
+            </div>
+
+            <div class="badge" id="badge3">
+                <div class="badge-icon">🎬</div>
+                <strong>Acotaciones</strong>
+            </div>
+
+            <div class="badge" id="badge4">
+                <div class="badge-icon">⚡</div>
+                <strong>Conflicto</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ESCENA -->
+
+    <section class="card">
+
+        <h2>🎭 Escena: “El caballo de la finca”</h2>
+
+        <div class="scene">
+
+            <div class="scene-title">
+                Una decisión inesperada
+            </div>
+
+            <div class="stage-direction">
+                (Al caer la tarde, Pedro llega al corral.
+                Luis está preparando un caballo para salir.)
+            </div>
+
+            <div class="dialogue">
+                <span class="character">PEDRO:</span>
+                ¿A dónde llevas el caballo?
+            </div>
+
+            <div class="dialogue">
+                <span class="character">LUIS:</span>
+                Al pueblo. Mi tío lo necesita esta noche.
+            </div>
+
+            <div class="dialogue">
+                <span class="character">PEDRO:</span>
+                Pero tu tío no pidió permiso para llevárselo.
+            </div>
+
+            <div class="stage-direction">
+                (Luis se detiene. Mira a Pedro y luego observa
+                el camino que conduce hacia el pueblo.)
+            </div>
+
+            <div class="dialogue">
+                <span class="character">LUIS:</span>
+                Si no voy ahora, no podré ayudarlo.
+            </div>
+
+            <div class="dialogue">
+                <span class="character">PEDRO:</span>
+                Entonces tendremos que decidir qué es más importante.
+            </div>
+
+            <div class="stage-direction">
+                (Los dos permanecen en silencio durante unos segundos.)
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PREGUNTA 1 -->
+
+    <section class="card question">
+
+        <h3>👤 Pista 1 — ¿Quiénes participan?</h3>
+
+        <p>
+            ¿Cuáles son los personajes que intervienen directamente
+            en esta escena?
+        </p>
+
+        <button class="option" onclick="answer(1,this,false)">
+            A. El tío y el caballo
+        </button>
+
+        <button class="option" onclick="answer(1,this,true)">
+            B. Pedro y Luis
+        </button>
+
+        <button class="option" onclick="answer(1,this,false)">
+            C. Pedro, Luis y el narrador
+        </button>
+
+        <div id="feedback1" class="feedback"></div>
+
+    </section>
+
+
+    <!-- PREGUNTA 2 -->
+
+    <section class="card question">
+
+        <h3>💬 Pista 2 — ¿Dónde está el diálogo?</h3>
+
+        <p>
+            ¿Cuál de estas opciones representa un diálogo teatral?
+        </p>
+
+        <button class="option" onclick="answer(2,this,false)">
+            A. Pedro llegó al corral al caer la tarde.
+        </button>
+
+        <button class="option" onclick="answer(2,this,true)">
+            B. PEDRO: ¿A dónde llevas el caballo?
+        </button>
+
+        <button class="option" onclick="answer(2,this,false)">
+            C. Pedro estaba preocupado por lo que ocurría.
+        </button>
+
+        <div id="feedback2" class="feedback"></div>
+
+    </section>
+
+
+    <!-- PREGUNTA 3 -->
+
+    <section class="card question">
+
+        <h3>🎬 Pista 3 — ¿Qué es una acotación?</h3>
+
+        <p>
+            Observa esta parte:
+        </p>
+
+        <div class="stage-direction">
+            (Luis se detiene. Mira a Pedro y luego observa
+            el camino que conduce hacia el pueblo.)
+        </div>
+
+        <p>
+            ¿Cuál es su función principal?
+        </p>
+
+        <button class="option" onclick="answer(3,this,false)">
+            A. Contar toda la historia al lector.
+        </button>
+
+        <button class="option" onclick="answer(3,this,true)">
+            B. Indicar acciones o elementos que ayudan a representar la escena.
+        </button>
+
+        <button class="option" onclick="answer(3,this,false)">
+            C. Explicar lo que piensa el autor.
+        </button>
+
+        <div id="feedback3" class="feedback"></div>
+
+    </section>
+
+
+    <!-- PREGUNTA 4 -->
+
+    <section class="card question">
+
+        <h3>⚡ Pista 4 — ¿Dónde está el conflicto?</h3>
+
+        <p>
+            ¿Cuál es el problema que genera tensión entre los personajes?
+        </p>
+
+        <button class="option" onclick="answer(4,this,false)">
+            A. Está comenzando a oscurecer.
+        </button>
+
+        <button class="option" onclick="answer(4,this,true)">
+            B. Luis quiere llevar el caballo, pero Pedro considera que no debería hacerlo sin permiso.
+        </button>
+
+        <button class="option" onclick="answer(4,this,false)">
+            C. El caballo está dentro del corral.
+        </button>
+
+        <div id="feedback4" class="feedback"></div>
+
+    </section>
+
+
+    <!-- INFORME -->
+
+    <section class="card final" id="final">
+
+        <h2>🎉 ¡Investigación terminada!</h2>
+
+        <p>
+            Has encontrado las cuatro pistas principales.
+        </p>
+
+        <div class="score" id="score">
+        </div>
+
+        <div class="mission">
+
+            <strong>📋 Informe del detective</strong>
+
+            <p>
+                Una escena dramática necesita personajes que actúen,
+                hablen y enfrenten situaciones.
+            </p>
+
+            <p>
+                El diálogo permite conocer lo que dicen los personajes,
+                mientras que las acotaciones ayudan a imaginar cómo
+                llevar la escena a la representación.
+            </p>
+
+            <p>
+                Y algo fundamental:
+                <strong>el conflicto mueve la acción.</strong>
+            </p>
+
+        </div>
+
+        <button class="reset" onclick="location.reload()">
+            🔄 Volver a investigar
+        </button>
+
+    </section>
+
+</div>
+
+
+<footer>
+    🎭 Historias de mi tierra · Laboratorio de teatro
+</footer>
+
+
+<script>
+
+let score = 0;
+let answered = {};
+
+const explanations = {
+
+    1: {
+        correct:
+        "¡Correcto! Pedro y Luis son quienes participan directamente en la escena.",
+        wrong:
+        "Observa quiénes aparecen hablando y actuando directamente. Ellos son los personajes que participan en la escena."
+    },
+
+    2: {
+        correct:
+        "¡Exacto! El diálogo permite que los personajes hablen directamente en la escena.",
+        wrong:
+        "Busca las palabras que aparecen después del nombre de un personaje. Allí encontramos el diálogo."
+    },
+
+    3: {
+        correct:
+        "¡Muy bien! Las acotaciones orientan acciones, movimientos, gestos, espacios u otros elementos de la representación.",
+        wrong:
+        "Las acotaciones no son diálogos. Son indicaciones que ayudan a representar lo que sucede en escena."
+    },
+
+    4: {
+        correct:
+        "¡Excelente! El conflicto aparece porque los personajes tienen posiciones diferentes frente a lo que debe hacerse con el caballo.",
+        wrong:
+        "El conflicto no es simplemente algo que ocurre en el lugar. Busca la situación que provoca una diferencia o tensión entre los personajes."
+    }
+
+};
+
+
+function answer(question, button, correct) {
+
+    if (answered[question]) {
+        return;
+    }
+
+    answered[question] = true;
+
+    const buttons =
+        button.parentElement.querySelectorAll(".option");
+
+    buttons.forEach(btn => {
+        btn.disabled = true;
+    });
+
+    const feedback =
+        document.getElementById("feedback" + question);
+
+    if (correct) {
+
+        score++;
+
+        button.classList.add("correct");
+
+        feedback.className =
+            "feedback correct-feedback";
+
+        feedback.innerHTML =
+            "✅ " + explanations[question].correct;
+
+        document
+            .getElementById("badge" + question)
+            .classList.add("active");
+
+    } else {
+
+        button.classList.add("wrong");
+
+        feedback.className =
+            "feedback wrong-feedback";
+
+        feedback.innerHTML =
+            "🔎 " + explanations[question].wrong;
+    }
+
+    feedback.style.display = "block";
+
+    if (Object.keys(answered).length === 4) {
+
+        setTimeout(showFinal, 600);
+
+    }
+
+}
+
+
+function showFinal() {
+
+    const final =
+        document.getElementById("final");
+
+    final.style.display = "block";
+
+    document.getElementById("score").innerText =
+        "Pistas encontradas: " + score + " de 4";
+
+    final.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
+```
