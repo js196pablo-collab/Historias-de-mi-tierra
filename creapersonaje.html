@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crea tu personaje</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f7f5f0;
+        color: #292929;
+        line-height: 1.6;
+    }
+
+    .contenedor {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 35px 22px 50px;
+    }
+
+    header {
+        border-bottom: 1px solid #d8d3ca;
+        padding-bottom: 25px;
+        margin-bottom: 30px;
+    }
+
+    .etiqueta {
+        color: #a85a35;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    h1 {
+        margin: 0 0 10px;
+        font-size: 34px;
+        font-weight: 700;
+        color: #33302d;
+    }
+
+    .introduccion {
+        max-width: 720px;
+        font-size: 17px;
+        color: #514b46;
+        margin: 0;
+    }
+
+    .seccion {
+        background: #ffffff;
+        border: 1px solid #ddd8d0;
+        padding: 25px;
+        margin-bottom: 24px;
+    }
+
+    h2 {
+        margin-top: 0;
+        color: #8b4a2f;
+        font-size: 22px;
+    }
+
+    h3 {
+        color: #403b37;
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .explicacion {
+        background: #eee9df;
+        border-left: 4px solid #a85a35;
+        padding: 16px 18px;
+        margin: 18px 0;
+    }
+
+    .elemento {
+        margin-bottom: 22px;
+    }
+
+    .elemento:last-child {
+        margin-bottom: 0;
+    }
+
+    .pregunta {
+        font-weight: bold;
+        margin-bottom: 7px;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid #c9c3bb;
+        background: #fff;
+        font-family: inherit;
+        font-size: 15px;
+        color: #292929;
+        border-radius: 3px;
+    }
+
+    textarea {
+        min-height: 95px;
+        resize: vertical;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+        border-color: #a85a35;
+    }
+
+    .ayuda {
+        font-size: 14px;
+        color: #68615b;
+        margin-top: 5px;
+    }
+
+    .ejemplo {
+        font-size: 14px;
+        color: #5c5650;
+        background: #f7f5f0;
+        padding: 10px 12px;
+        margin-top: 8px;
+        border-left: 3px solid #d8d3ca;
+    }
+
+    .boton {
+        display: inline-block;
+        border: none;
+        background: #a85a35;
+        color: white;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-family: inherit;
+        cursor: pointer;
+        border-radius: 3px;
+        margin-top: 8px;
+    }
+
+    .boton:hover {
+        background: #8b4a2f;
+    }
+
+    #resultado {
+        display: none;
+        margin-top: 25px;
+        padding: 20px;
+        border-left: 4px solid #386641;
+        background: #f1f4ee;
+    }
+
+    #resultado h2 {
+        color: #386641;
+        margin-top: 0;
+    }
+
+    .personaje-final {
+        background: #ffffff;
+        border: 1px solid #d8d3ca;
+        padding: 18px;
+        margin-top: 15px;
+    }
+
+    .personaje-final p {
+        margin: 8px 0;
+    }
+
+    .personaje-final strong {
+        color: #8b4a2f;
+    }
+
+    .mensaje {
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    .nota-final {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #d8d3ca;
+        color: #5c5650;
+        font-size: 15px;
+    }
+
+    @media (max-width: 600px) {
+        .contenedor {
+            padding: 25px 15px 40px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        .seccion {
+            padding: 20px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <header>
+        <div class="etiqueta">Género dramático · Actividad 4</div>
+        <h1>Crea tu personaje</h1>
+        <p class="introduccion">
+            En una obra de teatro, los personajes no están solamente para hablar.
+            Tienen deseos, preocupaciones, relaciones y toman decisiones que hacen avanzar la historia.
+            Ahora vas a construir un personaje que pueda formar parte de una historia de tu comunidad.
+        </p>
+    </header>
+
+
+    <section class="seccion">
+
+        <h2>¿Qué hace interesante a un personaje?</h2>
+
+        <p>
+            Un personaje se vuelve importante cuando <strong>quiere conseguir algo</strong>
+            y debe enfrentar alguna situación para lograrlo.
+        </p>
+
+        <div class="explicacion">
+            <strong>Recuerda:</strong> un buen personaje no necesita tener una vida extraordinaria.
+            Puede ser un campesino, una estudiante, un abuelo, una madre, un vecino,
+            un trabajador o cualquier persona de la comunidad.
+            Lo importante es que tenga algo que decir, algo que quiera conseguir y decisiones que tomar.
+        </div>
+
+        <h3>Observa este ejemplo</h3>
+
+        <div class="ejemplo">
+            <strong>Nombre:</strong> Don Ernesto<br>
+            <strong>Quién es:</strong> Campesino de la comunidad.<br>
+            <strong>Quiere:</strong> Recuperar una herramienta que dejó cerca del río.<br>
+            <strong>Le preocupa:</strong> Que llegue la noche antes de encontrarla.<br>
+            <strong>Decisión:</strong> Pedir ayuda a su vecino para buscarla.
+        </div>
+
+        <p>
+            Observa que conocer solamente el nombre y la ocupación de un personaje
+            no es suficiente. Lo que realmente puede generar una historia es
+            <strong>lo que quiere, lo que le preocupa y las decisiones que toma</strong>.
+        </p>
+
+    </section>
+
+
+    <section class="seccion">
+
+        <h2>1. Construye tu personaje</h2>
+
+        <div class="elemento">
+            <div class="pregunta">¿Cómo se llama tu personaje?</div>
+            <input type="text" id="nombre" placeholder="Escribe el nombre del personaje">
+        </div>
+
+        <div class="elemento">
+            <div class="pregunta">¿Quién es?</div>
+            <textarea id="quien" placeholder="Describe brevemente quién es, qué hace o cuál es su relación con la comunidad."></textarea>
+            <div class="ayuda">
+                Puedes escribir, por ejemplo: estudiante, agricultor, madre, vecino, trabajador, abuelo...
+            </div>
+        </div>
+
+        <div class="elemento">
+            <div class="pregunta">¿Dónde se encuentra habitualmente?</div>
+            <input type="text" id="lugar" placeholder="Ejemplo: finca, escuela, pueblo, río, carretera...">
+        </div>
+
+        <div class="elemento">
+            <div class="pregunta">¿Qué quiere conseguir?</div>
+            <textarea id="deseo" placeholder="Escribe algo que tu personaje quiera lograr."></textarea>
+            <div class="ayuda">
+                Piensa en algo concreto que pueda afectar el desarrollo de la historia.
+            </div>
+        </div>
+
+        <div class="elemento">
+            <div class="pregunta">¿Qué le preocupa o qué teme?</div>
+            <textarea id="preocupacion" placeholder="Escribe aquello que podría dificultar sus decisiones."></textarea>
+        </div>
+
+        <div class="elemento">
+            <div class="pregunta">¿Qué relación tiene con otras personas?</div>
+            <textarea id="relacion" placeholder="Explica si tiene un amigo, familiar, vecino, compañero, rival u otra relación importante."></textarea>
+        </div>
+
+        <div class="elemento">
+            <div class="pregunta">Cuando aparece un problema, ¿qué suele hacer?</div>
+            <textarea id="reaccion" placeholder="Describe cómo podría reaccionar: pedir ayuda, enfrentarse al problema, esconderse, negociar, insistir, cambiar de opinión..."></textarea>
+        </div>
+
+    </section>
+
+
+    <section class="seccion">
+
+        <h2>2. Haz que tu personaje tenga algo que decidir</h2>
+
+        <p>
+            En el teatro, las decisiones de los personajes ayudan a que la historia avance.
+            Piensa ahora en una situación relacionada con el personaje que acabas de crear.
+        </p>
+
+        <div class="elemento">
+            <div class="pregunta">
+                Tu personaje descubre que algo no salió como esperaba. ¿Qué problema enfrenta?
+            </div>
+
+            <textarea id="problema" placeholder="Describe brevemente el problema."></textarea>
+        </div>
+
+        <div class="elemento">
+            <div class="pregunta">
+                ¿Qué dos opciones podría tener?
+            </div>
+
+            <textarea id="opciones" placeholder="Escribe dos posibles decisiones que podría tomar."></textarea>
+        </div>
+
+        <div class="elemento">
+            <div class="pregunta">
+                ¿Qué decisión tomaría finalmente?
+            </div>
+
+            <textarea id="decision" placeholder="Explica qué decidiría y por qué."></textarea>
+        </div>
+
+    </section>
+
+
+    <section class="seccion">
+
+        <h2>3. Relaciona tu personaje con una historia de tu comunidad</h2>
+
+        <p>
+            Piensa en una persona real o en un personaje inspirado en alguien que conozcas.
+            No necesitas copiar su vida. Puedes tomar algunas características y crear un personaje nuevo.
+        </p>
+
+        <div class="elemento">
+            <div class="pregunta">
+                ¿Qué elemento de tu comunidad inspiró a este personaje?
+            </div>
+
+            <textarea id="inspiracion" placeholder="Puede ser una persona, una actividad, un lugar, una costumbre, una situación o una historia que hayas escuchado."></textarea>
+        </div>
+
+        <div class="elemento">
+            <div class="pregunta">
+                ¿Qué podría aportar este personaje a una obra de teatro sobre tu comunidad?
+            </div>
+
+            <textarea id="aporte" placeholder="Explica qué papel podría cumplir dentro de la historia."></textarea>
+        </div>
+
+    </section>
+
+
+    <section class="seccion">
+
+        <h2>4. Revisa tu personaje</h2>
+
+        <p>
+            Antes de continuar, revisa lo que escribiste. Un personaje puede ser sencillo,
+            pero debe tener características que permitan imaginarlo dentro de una historia.
+        </p>
+
+        <p>
+            Comprueba que tu personaje tenga:
+        </p>
+
+        <ul>
+            <li>Un nombre e identidad.</li>
+            <li>Un lugar o contexto.</li>
+            <li>Algo que quiere conseguir.</li>
+            <li>Una preocupación o dificultad.</li>
+            <li>Relaciones con otras personas.</li>
+            <li>Una posible decisión frente a un problema.</li>
+        </ul>
+
+        <button class="boton" onclick="revisarPersonaje()">
+            Revisar mi personaje
+        </button>
+
+        <div id="resultado">
+            <h2>Tu personaje</h2>
+
+            <p>
+                Has construido una primera versión de tu personaje.
+                Ahora puedes leerla como si fuera parte de una obra teatral.
+            </p>
+
+            <div class="personaje-final">
+
+                <p><strong>Nombre:</strong> <span id="rNombre"></span></p>
+
+                <p><strong>Quién es:</strong> <span id="rQuien"></span></p>
+
+                <p><strong>Dónde se encuentra:</strong> <span id="rLugar"></span></p>
+
+                <p><strong>Qué quiere:</strong> <span id="rDeseo"></span></p>
+
+                <p><strong>Qué le preocupa:</strong> <span id="rPreocupacion"></span></p>
+
+                <p><strong>Relación con otras personas:</strong> <span id="rRelacion"></span></p>
+
+                <p><strong>Cómo reacciona:</strong> <span id="rReaccion"></span></p>
+
+                <p><strong>Problema:</strong> <span id="rProblema"></span></p>
+
+                <p><strong>Decisión:</strong> <span id="rDecision"></span></p>
+
+                <p><strong>Inspiración:</strong> <span id="rInspiracion"></span></p>
+
+                <p><strong>Aporte a la obra:</strong> <span id="rAporte"></span></p>
+
+            </div>
+
+            <div id="mensaje" class="mensaje"></div>
+
+            <div class="nota-final">
+                <strong>Para la siguiente actividad:</strong>
+                conserva esta información. Tu personaje podrá participar en el conflicto
+                y en la escena que construiremos más adelante.
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+function obtener(id) {
+    return document.getElementById(id).value.trim();
+}
+
+function mostrar(id, texto) {
+    document.getElementById(id).textContent = texto || "No registrado";
+}
+
+function revisarPersonaje() {
+
+    const nombre = obtener("nombre");
+    const quien = obtener("quien");
+    const lugar = obtener("lugar");
+    const deseo = obtener("deseo");
+    const preocupacion = obtener("preocupacion");
+    const relacion = obtener("relacion");
+    const reaccion = obtener("reaccion");
+    const problema = obtener("problema");
+    const decision = obtener("decision");
+    const inspiracion = obtener("inspiracion");
+    const aporte = obtener("aporte");
+
+    mostrar("rNombre", nombre);
+    mostrar("rQuien", quien);
+    mostrar("rLugar", lugar);
+    mostrar("rDeseo", deseo);
+    mostrar("rPreocupacion", preocupacion);
+    mostrar("rRelacion", relacion);
+    mostrar("rReaccion", reaccion);
+    mostrar("rProblema", problema);
+    mostrar("rDecision", decision);
+    mostrar("rInspiracion", inspiracion);
+    mostrar("rAporte", aporte);
+
+    const camposPrincipales = [
+        nombre,
+        quien,
+        lugar,
+        deseo,
+        preocupacion,
+        problema,
+        decision
+    ];
+
+    const completos = camposPrincipales.filter(campo => campo !== "").length;
+
+    const mensaje = document.getElementById("mensaje");
+
+    if (completos === 7) {
+        mensaje.textContent =
+            "Tu personaje tiene los elementos necesarios para formar parte de una historia dramática.";
+        mensaje.style.color = "#386641";
+    } 
+    else if (completos >= 4) {
+        mensaje.textContent =
+            "Tu personaje ya tiene una base. Revisa los campos que quedaron vacíos para darle mayor claridad.";
+        mensaje.style.color = "#8b4a2f";
+    } 
+    else {
+        mensaje.textContent =
+            "Todavía faltan algunos elementos importantes. Completa la información y vuelve a revisar tu personaje.";
+        mensaje.style.color = "#9b3022";
+    }
+
+    document.getElementById("resultado").style.display = "block";
+
+    document.getElementById("resultado").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+</script>
+
+</body>
+</html>
