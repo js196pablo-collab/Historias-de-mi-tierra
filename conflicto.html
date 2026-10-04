@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Detectives del teatro</title>
+<title>Elementos del texto dramático</title>
 
 <style>
     * {
@@ -170,14 +170,14 @@
         font-weight: bold;
     }
 
-    .insignias {
+    .conceptos {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
         margin: 18px 0;
     }
 
-    .insignia {
+    .concepto {
         border: 1px solid #cfc8bd;
         background: #f8f5ef;
         padding: 7px 11px;
@@ -217,19 +217,23 @@
 
 <header>
     <div class="etiqueta">Historias de mi tierra · Género dramático</div>
-    <h1>Detectives del teatro</h1>
+
+    <h1>Elementos del texto dramático</h1>
+
     <p class="introduccion">
-        Una obra de teatro no solo cuenta una historia. También muestra
-        quién participa, qué ocurre entre los personajes y qué decisiones
-        hacen avanzar la acción.
+        En un texto dramático, la historia se construye a través de
+        personajes que hablan, actúan y enfrentan diferentes situaciones.
+        También aparecen indicaciones que ayudan a representar lo que ocurre.
     </p>
 </header>
 
+
 <div class="instruccion">
-    <strong>Tu misión:</strong> lee la escena con atención y descubre
-    los elementos que hacen que este texto pueda convertirse en una
-    representación teatral.
+    <strong>Lee con atención la escena.</strong>
+    Después responde las preguntas. Fíjate en quiénes participan,
+    qué dicen, qué hacen y cuál es el problema que deben resolver.
 </div>
+
 
 <section class="escena">
 
@@ -288,13 +292,14 @@
 
 </section>
 
+
 <form id="quiz">
 
 <section class="pregunta">
 
-    <div class="numero">Pregunta 1</div>
+    <div class="numero">1. Personajes</div>
 
-    <h3>¿Quiénes son los personajes que participan en la escena?</h3>
+    <h3>¿Quiénes participan directamente en la escena?</h3>
 
     <label>
         <input type="radio" name="p1" value="a">
@@ -316,9 +321,9 @@
 
 <section class="pregunta">
 
-    <div class="numero">Pregunta 2</div>
+    <div class="numero">2. Diálogo</div>
 
-    <h3>¿Qué elemento permite saber directamente lo que dicen los personajes?</h3>
+    <h3>¿Qué elemento permite conocer directamente lo que dicen los personajes?</h3>
 
     <label>
         <input type="radio" name="p2" value="a">
@@ -340,13 +345,13 @@
 
 <section class="pregunta">
 
-    <div class="numero">Pregunta 3</div>
+    <div class="numero">3. Acotaciones</div>
 
-    <h3>¿Para qué sirven principalmente las acotaciones que aparecen en la escena?</h3>
+    <h3>¿Para qué sirven las acotaciones que aparecen en la escena?</h3>
 
     <label>
         <input type="radio" name="p3" value="a">
-        Para explicar las acciones, movimientos o situaciones de la escena.
+        Para indicar acciones, movimientos o situaciones que ayudan a representar la escena.
     </label>
 
     <label>
@@ -364,9 +369,9 @@
 
 <section class="pregunta">
 
-    <div class="numero">Pregunta 4</div>
+    <div class="numero">4. Conflicto</div>
 
-    <h3>¿Cuál es el conflicto principal de la escena?</h3>
+    <h3>¿Cuál es el principal problema que deben enfrentar los personajes?</h3>
 
     <label>
         <input type="radio" name="p4" value="a">
@@ -385,8 +390,9 @@
 
 </section>
 
+
 <button type="button" class="boton" onclick="evaluar()">
-    Revisar mis respuestas
+    Revisar respuestas
 </button>
 
 </form>
@@ -398,7 +404,7 @@
 
     <p id="mensajeResultado"></p>
 
-    <div class="insignias" id="insignias"></div>
+    <div class="conceptos" id="conceptos"></div>
 
     <p id="retroalimentacion"></p>
 
@@ -439,48 +445,46 @@ function evaluar() {
     const resultado = document.getElementById("resultado");
     const titulo = document.getElementById("tituloResultado");
     const mensaje = document.getElementById("mensajeResultado");
-    const insignias = document.getElementById("insignias");
+    const conceptos = document.getElementById("conceptos");
     const retroalimentacion = document.getElementById("retroalimentacion");
 
     resultado.style.display = "block";
 
-    let nivel = "";
-
     if (puntaje === 4) {
 
-        titulo.textContent = "Muy bien: 4 de 4";
+        titulo.textContent = "Resultado: 4 de 4";
 
         mensaje.innerHTML =
-            '<span class="correcto">Has identificado los elementos principales de la escena.</span>';
+            '<span class="correcto">Muy bien. Identificaste los principales elementos de la escena.</span>';
 
-        insignias.innerHTML =
-            '<div class="insignia">Personajes</div>' +
-            '<div class="insignia">Diálogo</div>' +
-            '<div class="insignia">Acotaciones</div>' +
-            '<div class="insignia">Conflicto</div>';
+        conceptos.innerHTML =
+            '<div class="concepto">Personajes</div>' +
+            '<div class="concepto">Diálogo</div>' +
+            '<div class="concepto">Acotaciones</div>' +
+            '<div class="concepto">Conflicto</div>';
 
         retroalimentacion.textContent =
-            "Ya tienes las pistas necesarias para comenzar a leer una obra como un detective del teatro.";
+            "Estos elementos serán importantes cuando escribas tu propio texto dramático.";
 
     } else if (puntaje >= 2) {
 
-        titulo.textContent = "Vas por buen camino: " + puntaje + " de 4";
+        titulo.textContent = "Resultado: " + puntaje + " de 4";
 
         mensaje.innerHTML =
-            '<span class="correcto">Has encontrado algunos elementos importantes.</span>';
+            '<span class="correcto">Vas bien. Hay algunos elementos que conviene revisar.</span>';
 
         retroalimentacion.textContent =
-            "Vuelve a la escena y fíjate especialmente en lo que hacen los personajes, lo que dicen y el problema que deben resolver.";
+            "Vuelve a leer la escena y observa especialmente quiénes participan, qué dicen, qué acciones aparecen y cuál es el problema que deben resolver.";
 
     } else {
 
-        titulo.textContent = "Hay que volver a mirar la escena: " + puntaje + " de 4";
+        titulo.textContent = "Resultado: " + puntaje + " de 4";
 
         mensaje.innerHTML =
-            '<span class="error">Todavía quedan algunas pistas por descubrir.</span>';
+            '<span class="error">Es necesario revisar nuevamente la escena.</span>';
 
         retroalimentacion.textContent =
-            "Lee nuevamente la escena. Pregúntate: ¿quiénes participan?, ¿qué dicen?, ¿qué acciones aparecen y cuál es el problema que deben enfrentar?";
+            "Lee otra vez el texto con calma. Puedes hacerlo preguntándote: ¿quiénes participan?, ¿qué dicen?, ¿qué hacen? y ¿qué problema tienen?";
 
     }
 
