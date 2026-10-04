@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Construye el conflicto</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: #f7f5f0;
+        color: #292929;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+    }
+
+    .contenedor {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 35px 22px 50px;
+    }
+
+    header {
+        border-bottom: 1px solid #d8d3ca;
+        padding-bottom: 22px;
+        margin-bottom: 30px;
+    }
+
+    .etiqueta {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        color: #8b4a2f;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+
+    h1 {
+        margin: 0 0 8px;
+        font-size: 32px;
+        font-weight: 600;
+        color: #33302d;
+    }
+
+    .introduccion {
+        margin: 0;
+        color: #625d57;
+        font-size: 16px;
+        max-width: 720px;
+    }
+
+    .explicacion {
+        background: #eee9df;
+        border-left: 4px solid #c76b3c;
+        padding: 18px;
+        margin: 25px 0 30px;
+        color: #49443f;
+    }
+
+    .esquema {
+        background: white;
+        border: 1px solid #ddd8d0;
+        padding: 25px;
+        margin-bottom: 30px;
+    }
+
+    .esquema h2 {
+        margin-top: 0;
+        font-size: 21px;
+        font-weight: 600;
+        color: #403b37;
+    }
+
+    .pasos {
+        margin: 20px 0 0;
+    }
+
+    .paso {
+        padding: 13px 15px;
+        border-left: 3px solid #cfc8bd;
+        margin-bottom: 10px;
+        background: #faf9f6;
+    }
+
+    .paso strong {
+        color: #8b4a2f;
+    }
+
+    .actividad {
+        background: white;
+        border: 1px solid #ddd8d0;
+        padding: 25px;
+        margin-bottom: 20px;
+    }
+
+    .actividad h2 {
+        margin-top: 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: #403b37;
+    }
+
+    .actividad p {
+        color: #55504b;
+    }
+
+    label {
+        display: block;
+        margin: 7px 0;
+        padding: 9px 10px;
+        border: 1px solid transparent;
+        cursor: pointer;
+    }
+
+    label:hover {
+        background: #f6f2eb;
+        border-color: #e2ddd5;
+    }
+
+    input[type="radio"] {
+        margin-right: 8px;
+        accent-color: #a85a35;
+    }
+
+    select,
+    textarea {
+        width: 100%;
+        padding: 11px;
+        margin-top: 7px;
+        border: 1px solid #cfc8bd;
+        background: #fff;
+        color: #333;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+    }
+
+    textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .campo {
+        margin-bottom: 22px;
+    }
+
+    .campo label {
+        padding: 0;
+        margin: 0 0 5px;
+        border: none;
+        cursor: default;
+        font-weight: 600;
+        color: #403b37;
+    }
+
+    .campo label:hover {
+        background: none;
+        border: none;
+    }
+
+    .boton {
+        background: #a85a35;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 15px;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+
+    .boton:hover {
+        background: #8f492b;
+    }
+
+    .resultado {
+        display: none;
+        margin-top: 30px;
+        background: #eee9df;
+        border: 1px solid #d8d1c6;
+        padding: 25px;
+    }
+
+    .resultado h2 {
+        margin-top: 0;
+        font-size: 22px;
+        color: #403b37;
+    }
+
+    .correcto {
+        color: #386641;
+        font-weight: bold;
+    }
+
+    .observacion {
+        color: #625d57;
+    }
+
+    .resumen {
+        margin-top: 20px;
+        background: #faf9f6;
+        border: 1px solid #ddd8d0;
+        padding: 18px;
+    }
+
+    .resumen p {
+        margin: 7px 0;
+    }
+
+    .pie {
+        margin-top: 40px;
+        padding-top: 18px;
+        border-top: 1px solid #d8d3ca;
+        color: #77716b;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    @media (max-width: 600px) {
+        .contenedor {
+            padding: 25px 15px 40px;
+        }
+
+        h1 {
+            font-size: 27px;
+        }
+
+        .actividad,
+        .esquema {
+            padding: 20px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<header>
+
+    <div class="etiqueta">
+        Historias de mi tierra · Género dramático
+    </div>
+
+    <h1>Construye el conflicto</h1>
+
+    <p class="introduccion">
+        En una obra de teatro, los personajes suelen tener algo que quieren
+        conseguir. Cuando aparece un obstáculo, deben tomar decisiones.
+        De esas situaciones nace buena parte de la acción dramática.
+    </p>
+
+</header>
+
+
+<div class="explicacion">
+
+    <strong>Observa esta estructura:</strong>
+
+    <div class="pasos">
+
+        <div class="paso">
+            <strong>1. Personaje:</strong>
+            ¿Quién quiere conseguir algo?
+        </div>
+
+        <div class="paso">
+            <strong>2. Deseo:</strong>
+            ¿Qué quiere conseguir?
+        </div>
+
+        <div class="paso">
+            <strong>3. Obstáculo:</strong>
+            ¿Qué se lo impide?
+        </div>
+
+        <div class="paso">
+            <strong>4. Decisión:</strong>
+            ¿Qué decide hacer?
+        </div>
+
+        <div class="paso">
+            <strong>5. Consecuencia:</strong>
+            ¿Qué puede ocurrir después?
+        </div>
+
+    </div>
+
+</div>
+
+
+<section class="actividad">
+
+    <h2>1. Observa una situación</h2>
+
+    <p>
+        Lee el siguiente caso:
+    </p>
+
+    <p>
+        <em>
+            María necesita llegar al pueblo antes de que cierre la tienda.
+            Allí debe comprar un medicamento para su abuelo. Sin embargo,
+            cuando llega a la carretera descubre que el transporte que
+            esperaba ya se fue.
+        </em>
+    </p>
+
+    <p>
+        ¿Cuál es el conflicto principal?
+    </p>
+
+    <label>
+        <input type="radio" name="conflicto" value="a">
+        María no quiere ir al pueblo.
+    </label>
+
+    <label>
+        <input type="radio" name="conflicto" value="b">
+        María necesita comprar el medicamento, pero ha perdido el transporte.
+    </label>
+
+    <label>
+        <input type="radio" name="conflicto" value="c">
+        María quiere visitar a sus amigos en el pueblo.
+    </label>
+
+</section>
+
+
+<section class="actividad">
+
+    <h2>2. Completa la situación</h2>
+
+    <p>
+        Ahora piensa como quien está escribiendo una escena.
+        Completa cada parte del conflicto.
+    </p>
+
+    <div class="campo">
+
+        <label for="personaje">
+            Personaje
+        </label>
+
+        <input
+            type="text"
+            id="personaje"
+            placeholder="Ejemplo: María"
+        >
+
+    </div>
+
+
+    <div class="campo">
+
+        <label for="deseo">
+            ¿Qué quiere conseguir?
+        </label>
+
+        <textarea
+            id="deseo"
+            placeholder="Escribe qué necesita o desea el personaje."
+        ></textarea>
+
+    </div>
+
+
+    <div class="campo">
+
+        <label for="obstaculo">
+            ¿Qué se lo impide?
+        </label>
+
+        <textarea
+            id="obstaculo"
+            placeholder="Escribe el problema o dificultad que aparece."
+        ></textarea>
+
+    </div>
+
+
+    <div class="campo">
+
+        <label for="decision">
+            ¿Qué decide hacer?
+        </label>
+
+        <textarea
+            id="decision"
+            placeholder="Escribe qué hace el personaje para enfrentar el problema."
+        ></textarea>
+
+    </div>
+
+
+    <div class="campo">
+
+        <label for="consecuencia">
+            ¿Qué podría ocurrir después?
+        </label>
+
+        <textarea
+            id="consecuencia"
+            placeholder="Escribe una posible consecuencia de su decisión."
+        ></textarea>
+
+    </div>
+
+</section>
+
+
+<section class="actividad">
+
+    <h2>3. Piensa en una historia de tu comunidad</h2>
+
+    <p>
+        Ahora relaciona lo aprendido con el proyecto
+        <em>Historias de mi tierra</em>.
+    </p>
+
+    <p>
+        Recuerda alguna situación que hayas escuchado en tu familia,
+        en la finca, en la escuela o en la comunidad. No necesitas
+        contar toda la historia. Busca solamente una situación en la
+        que alguien haya tenido que enfrentar un problema o tomar una decisión.
+    </p>
+
+    <div class="campo">
+
+        <label for="historia">
+            Escribe brevemente la situación.
+        </label>
+
+        <textarea
+            id="historia"
+            placeholder="¿Qué ocurrió?"
+        ></textarea>
+
+    </div>
+
+
+    <div class="campo">
+
+        <label for="transformacion">
+            ¿Qué podría convertirse en un conflicto para una obra de teatro?
+        </label>
+
+        <textarea
+            id="transformacion"
+            placeholder="Explica qué quiere alguien, qué se lo impide y qué decisión debe tomar."
+        ></textarea>
+
+    </div>
+
+</section>
+
+
+<button type="button" class="boton" onclick="revisar()">
+    Revisar actividad
+</button>
+
+
+<section class="resultado" id="resultado">
+
+    <h2 id="tituloResultado"></h2>
+
+    <p id="mensajeResultado"></p>
+
+    <div class="resumen">
+
+        <p>
+            <strong>Personaje:</strong>
+            <span id="resPersonaje"></span>
+        </p>
+
+        <p>
+            <strong>Lo que quiere:</strong>
+            <span id="resDeseo"></span>
+        </p>
+
+        <p>
+            <strong>Obstáculo:</strong>
+            <span id="resObstaculo"></span>
+        </p>
+
+        <p>
+            <strong>Decisión:</strong>
+            <span id="resDecision"></span>
+        </p>
+
+        <p>
+            <strong>Consecuencia:</strong>
+            <span id="resConsecuencia"></span>
+        </p>
+
+    </div>
+
+    <p class="observacion">
+        Esta estructura puede ayudarte cuando llegue el momento de
+        transformar una historia real en una escena teatral.
+    </p>
+
+</section>
+
+
+<div class="pie">
+    Historias de mi tierra · Proyecto de género dramático
+</div>
+
+</div>
+
+
+<script>
+
+function revisar() {
+
+    const conflicto =
+        document.querySelector('input[name="conflicto"]:checked');
+
+    const personaje =
+        document.getElementById("personaje").value.trim();
+
+    const deseo =
+        document.getElementById("deseo").value.trim();
+
+    const obstaculo =
+        document.getElementById("obstaculo").value.trim();
+
+    const decision =
+        document.getElementById("decision").value.trim();
+
+    const consecuencia =
+        document.getElementById("consecuencia").value.trim();
+
+
+    const historia =
+        document.getElementById("historia").value.trim();
+
+    const transformacion =
+        document.getElementById("transformacion").value.trim();
+
+
+    const resultado =
+        document.getElementById("resultado");
+
+
+    const titulo =
+        document.getElementById("tituloResultado");
+
+
+    const mensaje =
+        document.getElementById("mensajeResultado");
+
+
+    if (!conflicto) {
+
+        resultado.style.display = "block";
+
+        titulo.textContent = "Antes de continuar";
+
+        mensaje.textContent =
+            "Responde primero la pregunta sobre la situación de María.";
+
+        resultado.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+        return;
+    }
+
+
+    if (conflicto.value === "b") {
+
+        titulo.textContent = "La situación está bien identificada";
+
+        mensaje.innerHTML =
+            '<span class="correcto">La dificultad de María aparece porque necesita conseguir algo, pero encuentra un obstáculo que se lo impide.</span>';
+
+    } else {
+
+        titulo.textContent = "Revisa la situación";
+
+        mensaje.textContent =
+            "Vuelve a leer el caso. Pregúntate qué necesita María y qué problema aparece cuando intenta conseguirlo.";
+
+    }
+
+
+    document.getElementById("resPersonaje").textContent =
+        personaje || "No escrito";
+
+    document.getElementById("resDeseo").textContent =
+        deseo || "No escrito";
+
+    document.getElementById("resObstaculo").textContent =
+        obstaculo || "No escrito";
+
+    document.getElementById("resDecision").textContent =
+        decision || "No escrito";
+
+    document.getElementById("resConsecuencia").textContent =
+        consecuencia || "No escrito";
+
+
+    resultado.style.display = "block";
+
+    resultado.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
