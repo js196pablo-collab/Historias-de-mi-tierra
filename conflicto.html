@@ -219,4 +219,279 @@
     <div class="etiqueta">Historias de mi tierra · Género dramático</div>
     <h1>Detectives del teatro</h1>
     <p class="introduccion">
+        Una obra de teatro no solo cuenta una historia. También muestra
+        quién participa, qué ocurre entre los personajes y qué decisiones
+        hacen avanzar la acción.
+    </p>
+</header>
+
+<div class="instruccion">
+    <strong>Tu misión:</strong> lee la escena con atención y descubre
+    los elementos que hacen que este texto pueda convertirse en una
+    representación teatral.
+</div>
+
+<section class="escena">
+
+    <h2>El caballo de la finca</h2>
+
+    <div class="escena-texto">
+
+        <p class="acotacion">
+            (Al final de la tarde. Pedro revisa una cerca cerca del corral.
+            Luis llega caminando rápidamente.)
+        </p>
+
+        <p>
+            <strong>LUIS:</strong> Pedro, ¿has visto el caballo de mi papá?
+        </p>
+
+        <p>
+            <strong>PEDRO:</strong> No. Pensé que estaba en el potrero grande.
+        </p>
+
+        <p>
+            <strong>LUIS:</strong> Allí no está. Lo buscamos toda la tarde.
+        </p>
+
+        <p class="acotacion">
+            (Pedro deja la herramienta que tiene en la mano y mira hacia
+            el camino que lleva al río.)
+        </p>
+
+        <p>
+            <strong>PEDRO:</strong> Entonces tenemos que buscarlo antes
+            de que oscurezca.
+        </p>
+
+        <p>
+            <strong>LUIS:</strong> Pero mi papá dijo que no fuéramos
+            hacia el río.
+        </p>
+
+        <p>
+            <strong>PEDRO:</strong> ¿Y qué hacemos? Si el caballo está
+            allá, tenemos que encontrarlo.
+        </p>
+
+        <p class="acotacion">
+            (Los dos se miran. Después de unos segundos, Luis toma una
+            decisión.)
+        </p>
+
+        <p>
+            <strong>LUIS:</strong> Vamos. Pero regresamos antes de que
+            oscurezca.
+        </p>
+
+    </div>
+
+</section>
+
+<form id="quiz">
+
+<section class="pregunta">
+
+    <div class="numero">Pregunta 1</div>
+
+    <h3>¿Quiénes son los personajes que participan en la escena?</h3>
+
+    <label>
+        <input type="radio" name="p1" value="a">
+        Luis y su papá
+    </label>
+
+    <label>
+        <input type="radio" name="p1" value="b">
+        Pedro y Luis
+    </label>
+
+    <label>
+        <input type="radio" name="p1" value="c">
+        Pedro y el caballo
+    </label>
+
+</section>
+
+
+<section class="pregunta">
+
+    <div class="numero">Pregunta 2</div>
+
+    <h3>¿Qué elemento permite saber directamente lo que dicen los personajes?</h3>
+
+    <label>
+        <input type="radio" name="p2" value="a">
+        Las acotaciones
+    </label>
+
+    <label>
+        <input type="radio" name="p2" value="b">
+        El diálogo
+    </label>
+
+    <label>
+        <input type="radio" name="p2" value="c">
+        El título
+    </label>
+
+</section>
+
+
+<section class="pregunta">
+
+    <div class="numero">Pregunta 3</div>
+
+    <h3>¿Para qué sirven principalmente las acotaciones que aparecen en la escena?</h3>
+
+    <label>
+        <input type="radio" name="p3" value="a">
+        Para explicar las acciones, movimientos o situaciones de la escena.
+    </label>
+
+    <label>
+        <input type="radio" name="p3" value="b">
+        Para contar toda la historia desde la voz de un narrador.
+    </label>
+
+    <label>
+        <input type="radio" name="p3" value="c">
+        Para presentar únicamente el lugar donde viven los personajes.
+    </label>
+
+</section>
+
+
+<section class="pregunta">
+
+    <div class="numero">Pregunta 4</div>
+
+    <h3>¿Cuál es el conflicto principal de la escena?</h3>
+
+    <label>
+        <input type="radio" name="p4" value="a">
+        Pedro no quiere trabajar en la finca.
+    </label>
+
+    <label>
+        <input type="radio" name="p4" value="b">
+        Luis quiere quedarse en la casa mientras Pedro trabaja.
+    </label>
+
+    <label>
+        <input type="radio" name="p4" value="c">
+        El caballo se ha perdido y deben decidir si lo buscan hacia el río.
+    </label>
+
+</section>
+
+<button type="button" class="boton" onclick="evaluar()">
+    Revisar mis respuestas
+</button>
+
+</form>
+
+
+<section class="resultado" id="resultado">
+
+    <h2 id="tituloResultado"></h2>
+
+    <p id="mensajeResultado"></p>
+
+    <div class="insignias" id="insignias"></div>
+
+    <p id="retroalimentacion"></p>
+
+</section>
+
+
+<div class="pie">
+    Historias de mi tierra · Proyecto de género dramático
+</div>
+
+</div>
+
+
+<script>
+
+function evaluar() {
+
+    const respuestas = {
+        p1: "b",
+        p2: "b",
+        p3: "a",
+        p4: "c"
+    };
+
+    let puntaje = 0;
+
+    for (let pregunta in respuestas) {
+
+        const seleccionada = document.querySelector(
+            'input[name="' + pregunta + '"]:checked'
+        );
+
+        if (seleccionada && seleccionada.value === respuestas[pregunta]) {
+            puntaje++;
+        }
+    }
+
+    const resultado = document.getElementById("resultado");
+    const titulo = document.getElementById("tituloResultado");
+    const mensaje = document.getElementById("mensajeResultado");
+    const insignias = document.getElementById("insignias");
+    const retroalimentacion = document.getElementById("retroalimentacion");
+
+    resultado.style.display = "block";
+
+    let nivel = "";
+
+    if (puntaje === 4) {
+
+        titulo.textContent = "Muy bien: 4 de 4";
+
+        mensaje.innerHTML =
+            '<span class="correcto">Has identificado los elementos principales de la escena.</span>';
+
+        insignias.innerHTML =
+            '<div class="insignia">Personajes</div>' +
+            '<div class="insignia">Diálogo</div>' +
+            '<div class="insignia">Acotaciones</div>' +
+            '<div class="insignia">Conflicto</div>';
+
+        retroalimentacion.textContent =
+            "Ya tienes las pistas necesarias para comenzar a leer una obra como un detective del teatro.";
+
+    } else if (puntaje >= 2) {
+
+        titulo.textContent = "Vas por buen camino: " + puntaje + " de 4";
+
+        mensaje.innerHTML =
+            '<span class="correcto">Has encontrado algunos elementos importantes.</span>';
+
+        retroalimentacion.textContent =
+            "Vuelve a la escena y fíjate especialmente en lo que hacen los personajes, lo que dicen y el problema que deben resolver.";
+
+    } else {
+
+        titulo.textContent = "Hay que volver a mirar la escena: " + puntaje + " de 4";
+
+        mensaje.innerHTML =
+            '<span class="error">Todavía quedan algunas pistas por descubrir.</span>';
+
+        retroalimentacion.textContent =
+            "Lee nuevamente la escena. Pregúntate: ¿quiénes participan?, ¿qué dicen?, ¿qué acciones aparecen y cuál es el problema que deben enfrentar?";
+
+    }
+
+    resultado.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+</script>
+
+</body>
+</html>
 ```
