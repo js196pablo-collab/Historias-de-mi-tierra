@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Construye una escena</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f7f5f0;
+        color: #292929;
+        line-height: 1.6;
+    }
+
+    .contenedor {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 35px 22px 50px;
+    }
+
+    header {
+        border-bottom: 1px solid #d8d3ca;
+        padding-bottom: 25px;
+        margin-bottom: 30px;
+    }
+
+    .etiqueta {
+        color: #a85a35;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    h1 {
+        margin: 0 0 10px;
+        font-size: 34px;
+        font-weight: 700;
+        color: #33302d;
+    }
+
+    .introduccion {
+        max-width: 720px;
+        font-size: 17px;
+        color: #514b46;
+        margin: 0;
+    }
+
+    .seccion {
+        background: #ffffff;
+        border: 1px solid #ddd8d0;
+        padding: 25px;
+        margin-bottom: 24px;
+    }
+
+    h2 {
+        margin-top: 0;
+        color: #8b4a2f;
+        font-size: 22px;
+    }
+
+    h3 {
+        color: #403b37;
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .explicacion {
+        background: #eee9df;
+        border-left: 4px solid #a85a35;
+        padding: 16px 18px;
+        margin: 18px 0;
+    }
+
+    .ejemplo {
+        background: #f7f5f0;
+        border: 1px solid #ddd8d0;
+        padding: 18px;
+        margin: 18px 0;
+    }
+
+    .ejemplo p {
+        margin: 8px 0;
+    }
+
+    .personaje {
+        color: #8b4a2f;
+        font-weight: bold;
+    }
+
+    .acotacion {
+        color: #68615b;
+        font-style: italic;
+    }
+
+    .elemento {
+        margin-bottom: 24px;
+    }
+
+    .elemento:last-child {
+        margin-bottom: 0;
+    }
+
+    .pregunta {
+        font-weight: bold;
+        margin-bottom: 7px;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid #c9c3bb;
+        background: #fff;
+        font-family: inherit;
+        font-size: 15px;
+        color: #292929;
+        border-radius: 3px;
+    }
+
+    textarea {
+        min-height: 90px;
+        resize: vertical;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #a85a35;
+    }
+
+    .ayuda {
+        font-size: 14px;
+        color: #68615b;
+        margin-top: 5px;
+    }
+
+    .lista-elementos {
+        padding-left: 20px;
+    }
+
+    .lista-elementos li {
+        margin-bottom: 8px;
+    }
+
+    .boton {
+        display: inline-block;
+        border: none;
+        background: #a85a35;
+        color: white;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-family: inherit;
+        cursor: pointer;
+        border-radius: 3px;
+        margin-top: 8px;
+    }
+
+    .boton:hover {
+        background: #8b4a2f;
+    }
+
+    #resultado {
+        display: none;
+        margin-top: 25px;
+        padding: 20px;
+        border-left: 4px solid #386641;
+        background: #f1f4ee;
+    }
+
+    #resultado h2 {
+        color: #386641;
+        margin-top: 0;
+    }
+
+    .escena-final {
+        background: #ffffff;
+        border: 1px solid #d8d3ca;
+        padding: 22px;
+        margin-top: 18px;
+    }
+
+    .escena-final p {
+        margin: 10px 0;
+    }
+
+    .titulo-escena {
+        font-weight: bold;
+        color: #8b4a2f;
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .linea-dialogo {
+        margin: 10px 0;
+    }
+
+    .nombre-personaje {
+        font-weight: bold;
+        color: #8b4a2f;
+    }
+
+    .texto-acotacion {
+        color: #68615b;
+        font-style: italic;
+    }
+
+    .mensaje {
+        margin-top: 18px;
+        font-weight: bold;
+    }
+
+    .nota-final {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #d8d3ca;
+        color: #5c5650;
+        font-size: 15px;
+    }
+
+    @media (max-width: 600px) {
+        .contenedor {
+            padding: 25px 15px 40px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        .seccion {
+            padding: 20px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <header>
+
+        <div class="etiqueta">Género dramático · Actividad 6</div>
+
+        <h1>Construye una escena</h1>
+
+        <p class="introduccion">
+            Una escena teatral reúne personajes, acciones, conflicto, diálogo y espacio.
+            Ahora vas a organizar estos elementos para construir una escena que pueda ser representada.
+        </p>
+
+    </header>
+
+
+    <section class="seccion">
+
+        <h2>¿Qué necesita una escena?</h2>
+
+        <p>
+            Una escena no es solamente una conversación.
+            El público también necesita saber quiénes participan,
+            dónde están, qué ocurre y qué acciones realizan.
+        </p>
+
+        <div class="explicacion">
+
+            <strong>Una escena puede incluir:</strong>
+
+            <ul class="lista-elementos">
+                <li><strong>Personajes:</strong> quienes participan en la situación.</li>
+                <li><strong>Espacio:</strong> el lugar donde ocurre la acción.</li>
+                <li><strong>Conflicto:</strong> el problema o situación que pone en tensión a los personajes.</li>
+                <li><strong>Diálogo:</strong> lo que dicen los personajes.</li>
+                <li><strong>Acotaciones:</strong> indicaciones sobre acciones, movimientos, tono o ambiente.</li>
+            </ul>
+
+        </div>
+
+
+        <h3>Observa este ejemplo</h3>
+
+        <div class="ejemplo">
+
+            <p class="acotacion">
+                (Al final de la tarde, Pedro revisa una cerca. Luis llega rápidamente.)
+            </p>
+
+            <p class="linea-dialogo">
+                <span class="personaje">LUIS:</span>
+                Pedro, ¿has visto el caballo de mi papá?
+            </p>
+
+            <p class="linea-dialogo">
+                <span class="personaje">PEDRO:</span>
+                No. Pensé que estaba en el potrero grande.
+            </p>
+
+            <p class="acotacion">
+                (Pedro deja la herramienta y mira hacia el camino que lleva al río.)
+            </p>
+
+            <p class="linea-dialogo">
+                <span class="personaje">PEDRO:</span>
+                Tenemos que buscarlo antes de que oscurezca.
+            </p>
+
+            <p class="linea-dialogo">
+                <span class="personaje">LUIS:</span>
+                Pero mi papá dijo que no fuéramos hacia el río.
+            </p>
+
+            <p class="acotacion">
+                (Los dos se miran. Luis piensa durante unos segundos.)
+            </p>
+
+            <p class="linea-dialogo">
+                <span class="personaje">LUIS:</span>
+                Vamos. Pero regresamos antes de que oscurezca.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="seccion">
+
+        <h2>1. Ubica la escena</h2>
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Cómo se titula tu escena?
+            </div>
+
+            <input
+                type="text"
+                id="titulo"
+                placeholder="Escribe un título breve"
+            >
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Dónde ocurre?
+            </div>
+
+            <input
+                type="text"
+                id="lugar"
+                placeholder="Ejemplo: una finca, la escuela, el camino, el río..."
+            >
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿En qué momento ocurre?
+            </div>
+
+            <input
+                type="text"
+                id="momento"
+                placeholder="Ejemplo: al amanecer, después de clases, al final de la tarde..."
+            >
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué está ocurriendo cuando comienza la escena?
+            </div>
+
+            <textarea
+                id="inicio"
+                placeholder="Describe brevemente la situación inicial."
+            ></textarea>
+
+        </div>
+
+    </section>
+
+
+    <section class="seccion">
+
+        <h2>2. Presenta a los personajes</h2>
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                Personaje 1
+            </div>
+
+            <input
+                type="text"
+                id="personaje1"
+                placeholder="Nombre del personaje"
+            >
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué quiere conseguir el personaje 1?
+            </div>
+
+            <textarea
+                id="deseo1"
+                placeholder="Escribe qué quiere conseguir."
+            ></textarea>
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                Personaje 2
+            </div>
+
+            <input
+                type="text"
+                id="personaje2"
+                placeholder="Nombre del personaje"
+            >
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué quiere conseguir el personaje 2?
+            </div>
+
+            <textarea
+                id="deseo2"
+                placeholder="Escribe qué quiere conseguir."
+            ></textarea>
+
+        </div>
+
+    </section>
+
+
+    <section class="seccion">
+
+        <h2>3. Escribe las acciones y los diálogos</h2>
+
+        <p>
+            Ahora escribe la escena. Puedes utilizar esta estructura:
+        </p>
+
+        <div class="ejemplo">
+
+            <p class="acotacion">
+                (Escribe aquí una acción o indicación para los actores.)
+            </p>
+
+            <p>
+                <span class="personaje">PERSONAJE 1:</span>
+                Escribe lo que dice.
+            </p>
+
+            <p>
+                <span class="personaje">PERSONAJE 2:</span>
+                Escribe su respuesta.
+            </p>
+
+            <p class="acotacion">
+                (Indica otra acción, movimiento o reacción.)
+            </p>
+
+            <p>
+                <span class="personaje">PERSONAJE 1:</span>
+                Continúa la conversación.
+            </p>
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                Escribe tu escena
+            </div>
+
+            <textarea
+                id="escena"
+                style="min-height: 300px;"
+                placeholder="(Escribe una acotación...)
+
+PERSONAJE 1: ...
+
+PERSONAJE 2: ...
+
+(Escribe una acción o reacción...)
+
+PERSONAJE 1: ...
+
+PERSONAJE 2: ..."
+            ></textarea>
+
+            <div class="ayuda">
+                Procura escribir al menos cuatro intervenciones de diálogo
+                y dos acotaciones.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="seccion">
+
+        <h2>4. ¿La escena funciona?</h2>
+
+        <p>
+            Lee nuevamente lo que escribiste y responde con sinceridad:
+        </p>
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿El conflicto aparece claramente?
+            </div>
+
+            <textarea
+                id="revisionConflicto"
+                placeholder="Explica dónde aparece el conflicto."
+            ></textarea>
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Las decisiones de los personajes hacen avanzar la escena?
+            </div>
+
+            <textarea
+                id="revisionDecision"
+                placeholder="Explica qué decisión o acción hace avanzar la historia."
+            ></textarea>
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué podría mejorar en tu escena?
+            </div>
+
+            <textarea
+                id="mejora"
+                placeholder="Escribe un aspecto que quieras cambiar o mejorar."
+            ></textarea>
+
+        </div>
+
+
+        <button class="boton" onclick="revisarEscena()">
+            Revisar mi escena
+        </button>
+
+
+        <div id="resultado">
+
+            <h2>Tu escena teatral</h2>
+
+            <p>
+                Esta es la versión que construiste con los elementos trabajados.
+                Léela en voz alta y piensa cómo podría representarse.
+            </p>
+
+            <div class="escena-final">
+
+                <div class="titulo-escena">
+                    <span id="rTitulo"></span>
+                </div>
+
+                <p>
+                    <strong>Lugar:</strong>
+                    <span id="rLugar"></span>
+                </p>
+
+                <p>
+                    <strong>Momento:</strong>
+                    <span id="rMomento"></span>
+                </p>
+
+                <p>
+                    <strong>Situación inicial:</strong>
+                    <span id="rInicio"></span>
+                </p>
+
+                <p>
+                    <strong>Personaje 1:</strong>
+                    <span id="rPersonaje1"></span>
+                </p>
+
+                <p>
+                    <strong>Personaje 2:</strong>
+                    <span id="rPersonaje2"></span>
+                </p>
+
+                <hr style="border: none; border-top: 1px solid #ddd8d0; margin: 20px 0;">
+
+                <p>
+                    <strong>Escena:</strong>
+                </p>
+
+                <div id="rEscena"></div>
+
+            </div>
+
+
+            <div id="mensaje" class="mensaje"></div>
+
+
+            <div class="nota-final">
+
+                <strong>Para la siguiente actividad:</strong>
+                conserva esta escena. Más adelante podrás revisarla,
+                ampliarla y convertirla en parte de un guion teatral.
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+function obtener(id) {
+    return document.getElementById(id).value.trim();
+}
+
+function mostrar(id, texto) {
+    document.getElementById(id).textContent = texto || "No registrado";
+}
+
+
+function mostrarEscena(texto) {
+
+    const contenedor = document.getElementById("rEscena");
+
+    contenedor.innerHTML = "";
+
+    if (!texto) {
+        contenedor.textContent = "No registraste una escena.";
+        return;
+    }
+
+    const lineas = texto.split("\n");
+
+    lineas.forEach(function(linea) {
+
+        const p = document.createElement("p");
+        p.className = "linea-dialogo";
+
+        const textoLimpio = linea.trim();
+
+        if (
+            textoLimpio.startsWith("(") &&
+            textoLimpio.endsWith(")")
+        ) {
+
+            const span = document.createElement("span");
+            span.className = "texto-acotacion";
+            span.textContent = textoLimpio;
+
+            p.appendChild(span);
+
+        } else {
+
+            const partes = textoLimpio.split(":");
+
+            if (partes.length > 1) {
+
+                const nombre = document.createElement("span");
+                nombre.className = "nombre-personaje";
+                nombre.textContent = partes[0] + ":";
+
+                p.appendChild(nombre);
+
+                p.appendChild(
+                    document.createTextNode(
+                        " " + partes.slice(1).join(":")
+                    )
+                );
+
+            } else {
+
+                p.textContent = textoLimpio;
+
+            }
+
+        }
+
+        contenedor.appendChild(p);
+
+    });
+}
+
+
+function revisarEscena() {
+
+    const titulo = obtener("titulo");
+    const lugar = obtener("lugar");
+    const momento = obtener("momento");
+    const inicio = obtener("inicio");
+
+    const personaje1 = obtener("personaje1");
+    const deseo1 = obtener("deseo1");
+
+    const personaje2 = obtener("personaje2");
+    const deseo2 = obtener("deseo2");
+
+    const escena = obtener("escena");
+
+    const revisionConflicto = obtener("revisionConflicto");
+    const revisionDecision = obtener("revisionDecision");
+    const mejora = obtener("mejora");
+
+
+    mostrar("rTitulo", titulo);
+    mostrar("rLugar", lugar);
+    mostrar("rMomento", momento);
+    mostrar("rInicio", inicio);
+
+    mostrar("rPersonaje1", personaje1);
+    mostrar("rPersonaje2", personaje2);
+
+    mostrarEscena(escena);
+
+
+    let elementos = [
+        titulo,
+        lugar,
+        momento,
+        inicio,
+        personaje1,
+        deseo1,
+        personaje2,
+        deseo2,
+        escena,
+        revisionConflicto,
+        revisionDecision,
+        mejora
+    ];
+
+    let completos = elementos.filter(function(elemento) {
+        return elemento !== "";
+    }).length;
+
+
+    const mensaje = document.getElementById("mensaje");
+
+
+    if (completos >= 10) {
+
+        mensaje.textContent =
+            "Tu escena está bastante desarrollada. Ahora puedes leerla en voz alta y comprobar si las acciones, los diálogos y el conflicto se entienden.";
+
+        mensaje.style.color = "#386641";
+
+    } else if (completos >= 7) {
+
+        mensaje.textContent =
+            "Tu escena tiene una buena base. Revisa algunos elementos para hacer más clara la situación teatral.";
+
+        mensaje.style.color = "#8b4a2f";
+
+    } else {
+
+        mensaje.textContent =
+            "Todavía faltan varios elementos. Completa la escena y vuelve a revisarla.";
+
+        mensaje.style.color = "#9b3022";
+
+    }
+
+
+    document.getElementById("resultado").style.display = "block";
+
+    document.getElementById("resultado").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
