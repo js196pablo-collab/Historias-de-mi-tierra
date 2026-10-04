@@ -1,0 +1,501 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Elementos del texto dramático</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: #f7f5f0;
+        color: #292929;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+    }
+
+    .contenedor {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 35px 22px 50px;
+    }
+
+    header {
+        border-bottom: 1px solid #d8d3ca;
+        padding-bottom: 22px;
+        margin-bottom: 30px;
+    }
+
+    .etiqueta {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        color: #8b4a2f;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+
+    h1 {
+        margin: 0 0 8px;
+        font-size: 32px;
+        font-weight: 600;
+        color: #33302d;
+    }
+
+    .introduccion {
+        margin: 0;
+        color: #625d57;
+        font-size: 16px;
+        max-width: 700px;
+    }
+
+    .instruccion {
+        background: #eee9df;
+        border-left: 4px solid #c76b3c;
+        padding: 15px 18px;
+        margin: 25px 0 30px;
+        color: #49443f;
+    }
+
+    .escena {
+        background: white;
+        border: 1px solid #ddd8d0;
+        padding: 28px;
+        margin-bottom: 35px;
+    }
+
+    .escena h2 {
+        margin-top: 0;
+        font-size: 21px;
+        font-weight: 600;
+        color: #403b37;
+    }
+
+    .escena-texto {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 17px;
+        line-height: 1.8;
+    }
+
+    .acotacion {
+        color: #77716b;
+        font-style: italic;
+    }
+
+    .pregunta {
+        background: white;
+        border: 1px solid #ddd8d0;
+        padding: 24px;
+        margin-bottom: 18px;
+    }
+
+    .numero {
+        color: #a85a35;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    .pregunta h3 {
+        font-size: 17px;
+        font-weight: 600;
+        margin: 0 0 16px;
+        color: #33302d;
+    }
+
+    label {
+        display: block;
+        padding: 9px 10px;
+        margin: 5px 0;
+        cursor: pointer;
+        border: 1px solid transparent;
+    }
+
+    label:hover {
+        background: #f6f2eb;
+        border-color: #e2ddd5;
+    }
+
+    input[type="radio"] {
+        margin-right: 8px;
+        accent-color: #a85a35;
+    }
+
+    .boton {
+        background: #a85a35;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 15px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .boton:hover {
+        background: #8f492b;
+    }
+
+    .resultado {
+        display: none;
+        margin-top: 30px;
+        background: #eee9df;
+        border: 1px solid #d8d1c6;
+        padding: 25px;
+    }
+
+    .resultado h2 {
+        margin-top: 0;
+        font-size: 22px;
+        color: #403b37;
+    }
+
+    .resultado p {
+        margin-bottom: 10px;
+    }
+
+    .correcto {
+        color: #386641;
+        font-weight: bold;
+    }
+
+    .error {
+        color: #9b3022;
+        font-weight: bold;
+    }
+
+    .conceptos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 18px 0;
+    }
+
+    .concepto {
+        border: 1px solid #cfc8bd;
+        background: #f8f5ef;
+        padding: 7px 11px;
+        font-size: 13px;
+        color: #5d5751;
+    }
+
+    .pie {
+        margin-top: 40px;
+        padding-top: 18px;
+        border-top: 1px solid #d8d3ca;
+        color: #77716b;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    @media (max-width: 600px) {
+        .contenedor {
+            padding: 25px 15px 40px;
+        }
+
+        h1 {
+            font-size: 27px;
+        }
+
+        .escena,
+        .pregunta {
+            padding: 20px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<header>
+    <div class="etiqueta">Historias de mi tierra · Género dramático</div>
+
+    <h1>Elementos del texto dramático</h1>
+
+    <p class="introduccion">
+        En un texto dramático, la historia se construye a través de
+        personajes que hablan, actúan y enfrentan diferentes situaciones.
+        También aparecen indicaciones que ayudan a representar lo que ocurre.
+    </p>
+</header>
+
+
+<div class="instruccion">
+    <strong>Lee con atención la escena.</strong>
+    Después responde las preguntas. Fíjate en quiénes participan,
+    qué dicen, qué hacen y cuál es el problema que deben resolver.
+</div>
+
+
+<section class="escena">
+
+    <h2>El caballo de la finca</h2>
+
+    <div class="escena-texto">
+
+        <p class="acotacion">
+            (Al final de la tarde. Pedro revisa una cerca cerca del corral.
+            Luis llega caminando rápidamente.)
+        </p>
+
+        <p>
+            <strong>LUIS:</strong> Pedro, ¿has visto el caballo de mi papá?
+        </p>
+
+        <p>
+            <strong>PEDRO:</strong> No. Pensé que estaba en el potrero grande.
+        </p>
+
+        <p>
+            <strong>LUIS:</strong> Allí no está. Lo buscamos toda la tarde.
+        </p>
+
+        <p class="acotacion">
+            (Pedro deja la herramienta que tiene en la mano y mira hacia
+            el camino que lleva al río.)
+        </p>
+
+        <p>
+            <strong>PEDRO:</strong> Entonces tenemos que buscarlo antes
+            de que oscurezca.
+        </p>
+
+        <p>
+            <strong>LUIS:</strong> Pero mi papá dijo que no fuéramos
+            hacia el río.
+        </p>
+
+        <p>
+            <strong>PEDRO:</strong> ¿Y qué hacemos? Si el caballo está
+            allá, tenemos que encontrarlo.
+        </p>
+
+        <p class="acotacion">
+            (Los dos se miran. Después de unos segundos, Luis toma una
+            decisión.)
+        </p>
+
+        <p>
+            <strong>LUIS:</strong> Vamos. Pero regresamos antes de que
+            oscurezca.
+        </p>
+
+    </div>
+
+</section>
+
+
+<form id="quiz">
+
+<section class="pregunta">
+
+    <div class="numero">1. Personajes</div>
+
+    <h3>¿Quiénes participan directamente en la escena?</h3>
+
+    <label>
+        <input type="radio" name="p1" value="a">
+        Luis y su papá
+    </label>
+
+    <label>
+        <input type="radio" name="p1" value="b">
+        Pedro y Luis
+    </label>
+
+    <label>
+        <input type="radio" name="p1" value="c">
+        Pedro y el caballo
+    </label>
+
+</section>
+
+
+<section class="pregunta">
+
+    <div class="numero">2. Diálogo</div>
+
+    <h3>¿Qué elemento permite conocer directamente lo que dicen los personajes?</h3>
+
+    <label>
+        <input type="radio" name="p2" value="a">
+        Las acotaciones
+    </label>
+
+    <label>
+        <input type="radio" name="p2" value="b">
+        El diálogo
+    </label>
+
+    <label>
+        <input type="radio" name="p2" value="c">
+        El título
+    </label>
+
+</section>
+
+
+<section class="pregunta">
+
+    <div class="numero">3. Acotaciones</div>
+
+    <h3>¿Para qué sirven las acotaciones que aparecen en la escena?</h3>
+
+    <label>
+        <input type="radio" name="p3" value="a">
+        Para indicar acciones, movimientos o situaciones que ayudan a representar la escena.
+    </label>
+
+    <label>
+        <input type="radio" name="p3" value="b">
+        Para contar toda la historia desde la voz de un narrador.
+    </label>
+
+    <label>
+        <input type="radio" name="p3" value="c">
+        Para presentar únicamente el lugar donde viven los personajes.
+    </label>
+
+</section>
+
+
+<section class="pregunta">
+
+    <div class="numero">4. Conflicto</div>
+
+    <h3>¿Cuál es el principal problema que deben enfrentar los personajes?</h3>
+
+    <label>
+        <input type="radio" name="p4" value="a">
+        Pedro no quiere trabajar en la finca.
+    </label>
+
+    <label>
+        <input type="radio" name="p4" value="b">
+        Luis quiere quedarse en la casa mientras Pedro trabaja.
+    </label>
+
+    <label>
+        <input type="radio" name="p4" value="c">
+        El caballo se ha perdido y deben decidir si lo buscan hacia el río.
+    </label>
+
+</section>
+
+
+<button type="button" class="boton" onclick="evaluar()">
+    Revisar respuestas
+</button>
+
+</form>
+
+
+<section class="resultado" id="resultado">
+
+    <h2 id="tituloResultado"></h2>
+
+    <p id="mensajeResultado"></p>
+
+    <div class="conceptos" id="conceptos"></div>
+
+    <p id="retroalimentacion"></p>
+
+</section>
+
+
+<div class="pie">
+    Historias de mi tierra · Proyecto de género dramático
+</div>
+
+</div>
+
+
+<script>
+
+function evaluar() {
+
+    const respuestas = {
+        p1: "b",
+        p2: "b",
+        p3: "a",
+        p4: "c"
+    };
+
+    let puntaje = 0;
+
+    for (let pregunta in respuestas) {
+
+        const seleccionada = document.querySelector(
+            'input[name="' + pregunta + '"]:checked'
+        );
+
+        if (seleccionada && seleccionada.value === respuestas[pregunta]) {
+            puntaje++;
+        }
+    }
+
+    const resultado = document.getElementById("resultado");
+    const titulo = document.getElementById("tituloResultado");
+    const mensaje = document.getElementById("mensajeResultado");
+    const conceptos = document.getElementById("conceptos");
+    const retroalimentacion = document.getElementById("retroalimentacion");
+
+    resultado.style.display = "block";
+
+    if (puntaje === 4) {
+
+        titulo.textContent = "Resultado: 4 de 4";
+
+        mensaje.innerHTML =
+            '<span class="correcto">Muy bien. Identificaste los principales elementos de la escena.</span>';
+
+        conceptos.innerHTML =
+            '<div class="concepto">Personajes</div>' +
+            '<div class="concepto">Diálogo</div>' +
+            '<div class="concepto">Acotaciones</div>' +
+            '<div class="concepto">Conflicto</div>';
+
+        retroalimentacion.textContent =
+            "Estos elementos serán importantes cuando escribas tu propio texto dramático.";
+
+    } else if (puntaje >= 2) {
+
+        titulo.textContent = "Resultado: " + puntaje + " de 4";
+
+        mensaje.innerHTML =
+            '<span class="correcto">Vas bien. Hay algunos elementos que conviene revisar.</span>';
+
+        retroalimentacion.textContent =
+            "Vuelve a leer la escena y observa especialmente quiénes participan, qué dicen, qué acciones aparecen y cuál es el problema que deben resolver.";
+
+    } else {
+
+        titulo.textContent = "Resultado: " + puntaje + " de 4";
+
+        mensaje.innerHTML =
+            '<span class="error">Es necesario revisar nuevamente la escena.</span>';
+
+        retroalimentacion.textContent =
+            "Lee otra vez el texto con calma. Puedes hacerlo preguntándote: ¿quiénes participan?, ¿qué dicen?, ¿qué hacen? y ¿qué problema tienen?";
+
+    }
+
+    resultado.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+</script>
+
+</body>
+</html>
+```
