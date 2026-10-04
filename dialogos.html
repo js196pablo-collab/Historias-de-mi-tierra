@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dale voz a tu personaje</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f7f5f0;
+        color: #292929;
+        line-height: 1.6;
+    }
+
+    .contenedor {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 35px 22px 50px;
+    }
+
+    header {
+        border-bottom: 1px solid #d8d3ca;
+        padding-bottom: 25px;
+        margin-bottom: 30px;
+    }
+
+    .etiqueta {
+        color: #a85a35;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    h1 {
+        margin: 0 0 10px;
+        font-size: 34px;
+        font-weight: 700;
+        color: #33302d;
+    }
+
+    .introduccion {
+        max-width: 720px;
+        font-size: 17px;
+        color: #514b46;
+        margin: 0;
+    }
+
+    .seccion {
+        background: #ffffff;
+        border: 1px solid #ddd8d0;
+        padding: 25px;
+        margin-bottom: 24px;
+    }
+
+    h2 {
+        margin-top: 0;
+        color: #8b4a2f;
+        font-size: 22px;
+    }
+
+    h3 {
+        color: #403b37;
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .explicacion {
+        background: #eee9df;
+        border-left: 4px solid #a85a35;
+        padding: 16px 18px;
+        margin: 18px 0;
+    }
+
+    .ejemplo {
+        background: #f7f5f0;
+        border: 1px solid #ddd8d0;
+        padding: 18px;
+        margin: 18px 0;
+    }
+
+    .ejemplo p {
+        margin: 7px 0;
+    }
+
+    .personaje {
+        color: #8b4a2f;
+        font-weight: bold;
+    }
+
+    .acotacion {
+        color: #68615b;
+        font-style: italic;
+    }
+
+    .elemento {
+        margin-bottom: 24px;
+    }
+
+    .elemento:last-child {
+        margin-bottom: 0;
+    }
+
+    .pregunta {
+        font-weight: bold;
+        margin-bottom: 7px;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid #c9c3bb;
+        background: #fff;
+        font-family: inherit;
+        font-size: 15px;
+        color: #292929;
+        border-radius: 3px;
+    }
+
+    textarea {
+        min-height: 90px;
+        resize: vertical;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #a85a35;
+    }
+
+    .ayuda {
+        font-size: 14px;
+        color: #68615b;
+        margin-top: 5px;
+    }
+
+    .opcion {
+        margin-top: 15px;
+        padding: 15px;
+        border-left: 3px solid #d8d3ca;
+        background: #f7f5f0;
+    }
+
+    .boton {
+        display: inline-block;
+        border: none;
+        background: #a85a35;
+        color: white;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-family: inherit;
+        cursor: pointer;
+        border-radius: 3px;
+        margin-top: 8px;
+    }
+
+    .boton:hover {
+        background: #8b4a2f;
+    }
+
+    #resultado {
+        display: none;
+        margin-top: 25px;
+        padding: 20px;
+        border-left: 4px solid #386641;
+        background: #f1f4ee;
+    }
+
+    #resultado h2 {
+        color: #386641;
+        margin-top: 0;
+    }
+
+    .dialogo-final {
+        background: #ffffff;
+        border: 1px solid #d8d3ca;
+        padding: 20px;
+        margin-top: 18px;
+    }
+
+    .linea-dialogo {
+        margin: 10px 0;
+    }
+
+    .nombre-personaje {
+        font-weight: bold;
+        color: #8b4a2f;
+    }
+
+    .mensaje {
+        margin-top: 18px;
+        font-weight: bold;
+    }
+
+    .nota-final {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #d8d3ca;
+        color: #5c5650;
+        font-size: 15px;
+    }
+
+    @media (max-width: 600px) {
+        .contenedor {
+            padding: 25px 15px 40px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        .seccion {
+            padding: 20px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <header>
+        <div class="etiqueta">Género dramático · Actividad 5</div>
+
+        <h1>Dale voz a tu personaje</h1>
+
+        <p class="introduccion">
+            En una obra de teatro conocemos a los personajes principalmente por lo que hacen
+            y por lo que dicen. Ahora vas a transformar ideas y acciones en diálogos que puedan
+            ser representados.
+        </p>
+    </header>
+
+
+    <section class="seccion">
+
+        <h2>¿Cómo funciona un diálogo teatral?</h2>
+
+        <p>
+            El diálogo es la conversación entre dos o más personajes.
+            Pero un buen diálogo no consiste solamente en intercambiar palabras:
+            cada personaje debe tener una intención.
+        </p>
+
+        <div class="explicacion">
+            <strong>Piensa antes de escribir:</strong>
+            ¿Qué quiere conseguir mi personaje en esta conversación?
+            ¿Qué quiere el otro personaje?
+            ¿Están de acuerdo o tienen intereses diferentes?
+        </div>
+
+        <div class="ejemplo">
+
+            <p class="acotacion">
+                (Luis llega rápidamente a la casa de Pedro.)
+            </p>
+
+            <p class="linea-dialogo">
+                <span class="personaje">LUIS:</span>
+                Pedro, ¿has visto el caballo de mi papá?
+            </p>
+
+            <p class="linea-dialogo">
+                <span class="personaje">PEDRO:</span>
+                No. Pensé que estaba en el potrero grande.
+            </p>
+
+            <p class="linea-dialogo">
+                <span class="personaje">LUIS:</span>
+                Allí no está. Lo buscamos toda la tarde.
+            </p>
+
+            <p class="linea-dialogo">
+                <span class="personaje">PEDRO:</span>
+                Entonces tenemos que buscarlo antes de que oscurezca.
+            </p>
+
+        </div>
+
+        <p>
+            Observa que cada personaje responde a lo que dice el otro.
+            La conversación también permite descubrir que existe un problema:
+            <strong>el caballo está perdido y deben decidir qué hacer</strong>.
+        </p>
+
+    </section>
+
+
+    <section class="seccion">
+
+        <h2>1. Antes de escribir, piensa</h2>
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué quiere conseguir tu personaje en esta conversación?
+            </div>
+
+            <textarea id="deseo" placeholder="Escribe qué quiere conseguir tu personaje."></textarea>
+
+        </div>
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Con quién va a hablar?
+            </div>
+
+            <input
+                type="text"
+                id="interlocutor"
+                placeholder="Escribe el nombre o relación del otro personaje."
+            >
+
+        </div>
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué quiere conseguir el otro personaje?
+            </div>
+
+            <textarea
+                id="deseoOtro"
+                placeholder="Explica qué quiere conseguir el otro personaje."
+            ></textarea>
+
+        </div>
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿En qué pueden estar en desacuerdo?
+            </div>
+
+            <textarea
+                id="desacuerdo"
+                placeholder="Explica brevemente cuál podría ser el desacuerdo."
+            ></textarea>
+
+        </div>
+
+    </section>
+
+
+    <section class="seccion">
+
+        <h2>2. Convierte una acción en diálogo</h2>
+
+        <p>
+            En una narración podemos decir directamente lo que hace una persona.
+            En el teatro podemos mostrar esa situación mediante acciones y palabras.
+        </p>
+
+        <div class="ejemplo">
+
+            <p>
+                <strong>Narración:</strong>
+                María llegó preocupada porque necesitaba conseguir transporte para llegar al pueblo.
+            </p>
+
+            <p>
+                <strong>Teatro:</strong>
+            </p>
+
+            <p class="acotacion">
+                (María llega rápidamente y mira hacia la carretera.)
+            </p>
+
+            <p>
+                <span class="personaje">MARÍA:</span>
+                ¡Se fue el transporte! ¿Y ahora cómo voy a llegar al pueblo?
+            </p>
+
+        </div>
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                Transforma esta narración en una pequeña escena:
+            </div>
+
+            <div class="opcion">
+                <strong>Situación:</strong>
+                Juan necesita hablar con su vecino porque un animal salió de la finca
+                y está cerca de la carretera. El vecino piensa que no es necesario buscarlo todavía.
+            </div>
+
+            <textarea
+                id="transformacion"
+                placeholder="Escribe al menos cuatro intervenciones de diálogo. Puedes agregar una acotación."
+            ></textarea>
+
+            <div class="ayuda">
+                Recuerda escribir el nombre del personaje antes de cada intervención.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="seccion">
+
+        <h2>3. Escribe una conversación de tu historia</h2>
+
+        <p>
+            Ahora utiliza el personaje que construiste en la actividad anterior.
+            Imagina que se encuentra con otra persona y ambos tienen que hablar sobre un problema.
+        </p>
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Dónde ocurre la conversación?
+            </div>
+
+            <input
+                type="text"
+                id="escenario"
+                placeholder="Ejemplo: cerca de la escuela, en una finca, junto al río..."
+            >
+
+        </div>
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué está ocurriendo en ese momento?
+            </div>
+
+            <textarea
+                id="situacion"
+                placeholder="Explica brevemente qué está pasando."
+            ></textarea>
+
+        </div>
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                Escribe el diálogo.
+            </div>
+
+            <textarea
+                id="dialogo"
+                placeholder="PERSONAJE 1: ...
+
+PERSONAJE 2: ...
+
+PERSONAJE 1: ...
+
+PERSONAJE 2: ...
+
+Puedes agregar una acotación entre paréntesis."
+                style="min-height: 180px;"
+            ></textarea>
+
+        </div>
+
+    </section>
+
+
+    <section class="seccion">
+
+        <h2>4. Revisa lo que escribiste</h2>
+
+        <p>
+            Antes de continuar con la siguiente actividad, revisa tu diálogo.
+        </p>
+
+        <ul>
+            <li>¿Se entiende quién está hablando?</li>
+            <li>¿Cada personaje tiene algo que quiere conseguir?</li>
+            <li>¿Las respuestas tienen relación con lo que dijo el otro personaje?</li>
+            <li>¿Existe algún problema, desacuerdo o decisión?</li>
+            <li>¿El diálogo ayuda a avanzar la historia?</li>
+            <li>¿Incluiste alguna acción o acotación cuando era necesario?</li>
+        </ul>
+
+        <button class="boton" onclick="revisarDialogo()">
+            Revisar mi diálogo
+        </button>
+
+
+        <div id="resultado">
+
+            <h2>Tu escena</h2>
+
+            <p>
+                Esta es la escena que construiste. Léela nuevamente pensando
+                en cómo podrían representarla dos actores.
+            </p>
+
+            <div class="dialogo-final">
+
+                <p>
+                    <strong>Lugar:</strong>
+                    <span id="rEscenario"></span>
+                </p>
+
+                <p>
+                    <strong>Situación:</strong>
+                    <span id="rSituacion"></span>
+                </p>
+
+                <p>
+                    <strong>Diálogo:</strong>
+                </p>
+
+                <div id="rDialogo"></div>
+
+            </div>
+
+            <div id="mensaje" class="mensaje"></div>
+
+            <div class="nota-final">
+                <strong>Para la siguiente actividad:</strong>
+                conserva este diálogo. Más adelante tendrás que unir personajes,
+                conflicto, diálogos y acotaciones para construir una escena teatral completa.
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+function obtener(id) {
+    return document.getElementById(id).value.trim();
+}
+
+function mostrar(id, texto) {
+    document.getElementById(id).textContent = texto || "No registrado";
+}
+
+function revisarDialogo() {
+
+    const deseo = obtener("deseo");
+    const interlocutor = obtener("interlocutor");
+    const deseoOtro = obtener("deseoOtro");
+    const desacuerdo = obtener("desacuerdo");
+
+    const transformacion = obtener("transformacion");
+
+    const escenario = obtener("escenario");
+    const situacion = obtener("situacion");
+    const dialogo = obtener("dialogo");
+
+    mostrar("rEscenario", escenario);
+    mostrar("rSituacion", situacion);
+
+    const contenedorDialogo = document.getElementById("rDialogo");
+
+    contenedorDialogo.innerHTML = "";
+
+    if (dialogo) {
+
+        const lineas = dialogo.split("\n");
+
+        lineas.forEach(function(linea) {
+
+            const p = document.createElement("p");
+            p.className = "linea-dialogo";
+
+            const partes = linea.split(":");
+
+            if (partes.length > 1) {
+
+                const nombre = document.createElement("span");
+                nombre.className = "nombre-personaje";
+                nombre.textContent = partes[0] + ":";
+
+                p.appendChild(nombre);
+                p.appendChild(
+                    document.createTextNode(" " + partes.slice(1).join(":"))
+                );
+
+            } else {
+
+                p.textContent = linea;
+
+            }
+
+            contenedorDialogo.appendChild(p);
+
+        });
+
+    } else {
+
+        contenedorDialogo.textContent = "No registraste un diálogo.";
+
+    }
+
+
+    let completos = 0;
+
+    const campos = [
+        deseo,
+        interlocutor,
+        deseoOtro,
+        desacuerdo,
+        escenario,
+        situacion,
+        dialogo
+    ];
+
+    campos.forEach(function(campo) {
+
+        if (campo !== "") {
+            completos++;
+        }
+
+    });
+
+
+    const mensaje = document.getElementById("mensaje");
+
+    if (completos === 7) {
+
+        mensaje.textContent =
+            "Tu escena tiene una situación, personajes con intereses y un diálogo que puede continuar desarrollándose.";
+
+        mensaje.style.color = "#386641";
+
+    } else if (completos >= 4) {
+
+        mensaje.textContent =
+            "La escena tiene una buena base. Revisa los campos que faltan para hacer más clara la situación y el diálogo.";
+
+        mensaje.style.color = "#8b4a2f";
+
+    } else {
+
+        mensaje.textContent =
+            "Todavía faltan algunos elementos. Completa la información y vuelve a revisar tu escena.";
+
+        mensaje.style.color = "#9b3022";
+
+    }
+
+
+    document.getElementById("resultado").style.display = "block";
+
+    document.getElementById("resultado").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
