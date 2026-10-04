@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crea tu guion teatral</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f7f5f0;
+        color: #292929;
+        line-height: 1.6;
+    }
+
+    .contenedor {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 35px 22px 55px;
+    }
+
+    header {
+        border-bottom: 1px solid #d8d3ca;
+        padding-bottom: 25px;
+        margin-bottom: 30px;
+    }
+
+    .etiqueta {
+        color: #a85a35;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    h1 {
+        margin: 0 0 10px;
+        font-size: 34px;
+        font-weight: 700;
+        color: #33302d;
+    }
+
+    .introduccion {
+        max-width: 760px;
+        font-size: 17px;
+        color: #514b46;
+        margin: 0;
+    }
+
+    .seccion {
+        background: #ffffff;
+        border: 1px solid #ddd8d0;
+        padding: 26px;
+        margin-bottom: 24px;
+    }
+
+    h2 {
+        margin-top: 0;
+        color: #8b4a2f;
+        font-size: 22px;
+    }
+
+    h3 {
+        color: #403b37;
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .explicacion {
+        background: #eee9df;
+        border-left: 4px solid #a85a35;
+        padding: 16px 18px;
+        margin: 18px 0;
+    }
+
+    .nota {
+        background: #f7f5f0;
+        border: 1px solid #ddd8d0;
+        padding: 15px 17px;
+        margin: 18px 0;
+    }
+
+    .elemento {
+        margin-bottom: 24px;
+    }
+
+    .elemento:last-child {
+        margin-bottom: 0;
+    }
+
+    .pregunta {
+        font-weight: bold;
+        margin-bottom: 7px;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid #c9c3bb;
+        background: #fff;
+        font-family: inherit;
+        font-size: 15px;
+        color: #292929;
+        border-radius: 3px;
+    }
+
+    textarea {
+        min-height: 95px;
+        resize: vertical;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+        border-color: #a85a35;
+    }
+
+    .ayuda {
+        font-size: 14px;
+        color: #68615b;
+        margin-top: 5px;
+    }
+
+    .estructura {
+        border-left: 3px solid #d8d3ca;
+        padding-left: 16px;
+        margin: 15px 0;
+    }
+
+    .estructura strong {
+        color: #8b4a2f;
+    }
+
+    .escena {
+        border: 1px solid #d8d3ca;
+        padding: 20px;
+        margin-top: 20px;
+        background: #faf9f6;
+    }
+
+    .escena h3 {
+        margin-top: 0;
+        color: #8b4a2f;
+    }
+
+    .boton-secundario {
+        border: 1px solid #a85a35;
+        background: #ffffff;
+        color: #8b4a2f;
+        padding: 10px 18px;
+        font-size: 15px;
+        font-family: inherit;
+        cursor: pointer;
+        border-radius: 3px;
+        margin-top: 8px;
+    }
+
+    .boton-secundario:hover {
+        background: #f7f5f0;
+    }
+
+    .boton {
+        display: inline-block;
+        border: none;
+        background: #a85a35;
+        color: white;
+        padding: 13px 26px;
+        font-size: 16px;
+        font-family: inherit;
+        cursor: pointer;
+        border-radius: 3px;
+        margin-top: 8px;
+    }
+
+    .boton:hover {
+        background: #8b4a2f;
+    }
+
+    #resultado {
+        display: none;
+        margin-top: 25px;
+        padding: 22px;
+        border-left: 4px solid #386641;
+        background: #f1f4ee;
+    }
+
+    #resultado h2 {
+        color: #386641;
+        margin-top: 0;
+    }
+
+    .guion-final {
+        background: #ffffff;
+        border: 1px solid #d8d3ca;
+        padding: 22px;
+        margin-top: 18px;
+    }
+
+    .titulo-guion {
+        font-size: 24px;
+        font-weight: bold;
+        color: #8b4a2f;
+        margin-bottom: 18px;
+    }
+
+    .datos-guion {
+        margin-bottom: 20px;
+    }
+
+    .datos-guion p {
+        margin: 7px 0;
+    }
+
+    .bloque-guion {
+        border-top: 1px solid #ddd8d0;
+        padding-top: 18px;
+        margin-top: 18px;
+    }
+
+    .bloque-guion h3 {
+        color: #8b4a2f;
+    }
+
+    .mensaje {
+        margin-top: 18px;
+        font-weight: bold;
+    }
+
+    .nota-final {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #d8d3ca;
+        color: #5c5650;
+        font-size: 15px;
+    }
+
+    @media (max-width: 600px) {
+
+        .contenedor {
+            padding: 25px 15px 40px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        .seccion {
+            padding: 20px;
+        }
+
+    }
+</style>
+</head>
+
+
+<body>
+
+<div class="contenedor">
+
+    <header>
+
+        <div class="etiqueta">
+            Género dramático · Actividad 7
+        </div>
+
+        <h1>Crea tu guion teatral</h1>
+
+        <p class="introduccion">
+            Ya tienes personajes, conflictos, diálogos y escenas.
+            Ahora vas a organizar esos elementos para convertir una historia
+            en un guion teatral que pueda ser leído y representado.
+        </p>
+
+    </header>
+
+
+    <!-- SECCIÓN 1 -->
+
+    <section class="seccion">
+
+        <h2>Del relato al teatro</h2>
+
+        <p>
+            Una historia que escuchamos en nuestra familia o comunidad puede contarse
+            de muchas maneras. Para convertirla en teatro necesitamos tomar decisiones:
+            elegir personajes, organizar los acontecimientos, construir un conflicto
+            y decidir qué mostrarán y dirán los personajes.
+        </p>
+
+        <div class="explicacion">
+
+            <strong>Recuerda:</strong>
+            no tienes que copiar exactamente la historia que escuchaste.
+            Puedes conservar su idea principal y modificar algunos personajes,
+            situaciones o acontecimientos para construir una obra dramática.
+
+        </div>
+
+
+        <div class="estructura">
+
+            <p>
+                <strong>Historia original:</strong>
+                lo que escuchaste, investigaste o recuerdas.
+            </p>
+
+            <p>
+                <strong>Adaptación:</strong>
+                las decisiones que tomas para convertir esa historia en teatro.
+            </p>
+
+            <p>
+                <strong>Guion:</strong>
+                el texto organizado para que pueda ser leído y representado.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECCIÓN 2 -->
+
+    <section class="seccion">
+
+        <h2>1. Presenta tu obra</h2>
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                Título de la obra
+            </div>
+
+            <input
+                type="text"
+                id="titulo"
+                placeholder="Escribe el título de tu obra"
+            >
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿De dónde surge esta historia?
+            </div>
+
+            <textarea
+                id="origen"
+                placeholder="Explica si proviene de una historia familiar, una experiencia, una tradición, un lugar o un relato de la comunidad."
+            ></textarea>
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué quieres conservar de la historia original?
+            </div>
+
+            <textarea
+                id="conservar"
+                placeholder="Escribe el acontecimiento, personaje, lugar, costumbre o idea que consideras más importante."
+            ></textarea>
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué vas a modificar para convertirla en una obra de teatro?
+            </div>
+
+            <textarea
+                id="modificar"
+                placeholder="Puedes modificar personajes, lugares, acontecimientos, tiempos o situaciones."
+            ></textarea>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECCIÓN 3 -->
+
+    <section class="seccion">
+
+        <h2>2. Organiza los personajes</h2>
+
+        <p>
+            Una obra no necesita tener muchos personajes.
+            Lo importante es que cada uno tenga una función dentro de la historia.
+        </p>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                Personaje principal
+            </div>
+
+            <input
+                type="text"
+                id="principal"
+                placeholder="Nombre del personaje"
+            >
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué quiere conseguir?
+            </div>
+
+            <textarea
+                id="deseoPrincipal"
+                placeholder="Escribe qué quiere conseguir el personaje principal."
+            ></textarea>
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué personaje se relaciona directamente con él o ella?
+            </div>
+
+            <input
+                type="text"
+                id="secundario"
+                placeholder="Nombre del segundo personaje"
+            >
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué quiere este segundo personaje?
+            </div>
+
+            <textarea
+                id="deseoSecundario"
+                placeholder="Escribe qué quiere conseguir."
+            ></textarea>
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Necesitas otros personajes?
+            </div>
+
+            <textarea
+                id="otros"
+                placeholder="Escribe sus nombres y explica brevemente qué función cumplen."
+            ></textarea>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECCIÓN 4 -->
+
+    <section class="seccion">
+
+        <h2>3. Construye la historia</h2>
+
+        <p>
+            Organiza ahora los tres momentos principales de tu obra.
+            No necesitas contar todos los detalles todavía.
+        </p>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                Inicio: ¿qué está ocurriendo al comenzar la obra?
+            </div>
+
+            <textarea
+                id="inicio"
+                placeholder="Presenta el lugar, los personajes y la situación inicial."
+            ></textarea>
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                Conflicto: ¿qué problema cambia la situación?
+            </div>
+
+            <textarea
+                id="conflicto"
+                placeholder="Explica qué problema aparece y por qué los personajes deben actuar."
+            ></textarea>
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                Desenlace: ¿qué ocurre después?
+            </div>
+
+            <textarea
+                id="desenlace"
+                placeholder="Explica cómo termina la situación. No tiene que ser un final feliz."
+            ></textarea>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECCIÓN 5 -->
+
+    <section class="seccion">
+
+        <h2>4. Organiza las escenas</h2>
+
+        <p>
+            Divide la obra en escenas. Cada escena debe mostrar una parte
+            importante de la historia y hacer que esta avance.
+        </p>
+
+
+        <div class="escena">
+
+            <h3>Escena 1</h3>
+
+            <div class="elemento">
+
+                <div class="pregunta">
+                    ¿Dónde ocurre?
+                </div>
+
+                <input
+                    type="text"
+                    id="lugar1"
+                    placeholder="Lugar de la escena"
+                >
+
+            </div>
+
+
+            <div class="elemento">
+
+                <div class="pregunta">
+                    ¿Qué ocurre?
+                </div>
+
+                <textarea
+                    id="accion1"
+                    placeholder="Describe lo que ocurre en esta escena."
+                ></textarea>
+
+            </div>
+
+
+            <div class="elemento">
+
+                <div class="pregunta">
+                    ¿Qué personajes participan?
+                </div>
+
+                <input
+                    type="text"
+                    id="personajes1"
+                    placeholder="Escribe los nombres"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="escena">
+
+            <h3>Escena 2</h3>
+
+            <div class="elemento">
+
+                <div class="pregunta">
+                    ¿Dónde ocurre?
+                </div>
+
+                <input
+                    type="text"
+                    id="lugar2"
+                    placeholder="Lugar de la escena"
+                >
+
+            </div>
+
+
+            <div class="elemento">
+
+                <div class="pregunta">
+                    ¿Qué ocurre?
+                </div>
+
+                <textarea
+                    id="accion2"
+                    placeholder="Describe lo que ocurre en esta escena."
+                ></textarea>
+
+            </div>
+
+
+            <div class="elemento">
+
+                <div class="pregunta">
+                    ¿Qué personajes participan?
+                </div>
+
+                <input
+                    type="text"
+                    id="personajes2"
+                    placeholder="Escribe los nombres"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="escena">
+
+            <h3>Escena 3</h3>
+
+            <div class="elemento">
+
+                <div class="pregunta">
+                    ¿Dónde ocurre?
+                </div>
+
+                <input
+                    type="text"
+                    id="lugar3"
+                    placeholder="Lugar de la escena"
+                >
+
+            </div>
+
+
+            <div class="elemento">
+
+                <div class="pregunta">
+                    ¿Qué ocurre?
+                </div>
+
+                <textarea
+                    id="accion3"
+                    placeholder="Describe lo que ocurre en esta escena."
+                ></textarea>
+
+            </div>
+
+
+            <div class="elemento">
+
+                <div class="pregunta">
+                    ¿Qué personajes participan?
+                </div>
+
+                <input
+                    type="text"
+                    id="personajes3"
+                    placeholder="Escribe los nombres"
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECCIÓN 6 -->
+
+    <section class="seccion">
+
+        <h2>5. Escribe una parte del guion</h2>
+
+        <p>
+            Ahora escribe una parte de una de tus escenas.
+            Utiliza los nombres de los personajes y agrega acotaciones cuando sean necesarias.
+        </p>
+
+
+        <div class="nota">
+
+            <strong>Ejemplo:</strong>
+
+            <p>
+                <em>
+                    (María llega a la entrada de la finca y mira hacia el camino.)
+                </em>
+            </p>
+
+            <p>
+                <strong>MARÍA:</strong>
+                ¿Todavía no ha llegado?
+            </p>
+
+            <p>
+                <strong>JOSÉ:</strong>
+                No. Dijo que regresaría antes de que oscureciera.
+            </p>
+
+            <p>
+                <em>
+                    (María mira nuevamente hacia el camino.)
+                </em>
+            </p>
+
+        </div>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                Escribe tu fragmento de guion
+            </div>
+
+            <textarea
+                id="fragmento"
+                style="min-height: 280px;"
+                placeholder="(Escribe una acotación...)
+
+PERSONAJE: Escribe el diálogo.
+
+PERSONAJE: Escribe la respuesta.
+
+(Escribe una acción o reacción...)
+
+PERSONAJE: Continúa la escena."
+            ></textarea>
+
+            <div class="ayuda">
+                Intenta incluir al menos cuatro intervenciones de diálogo
+                y dos acotaciones.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECCIÓN 7 -->
+
+    <section class="seccion">
+
+        <h2>6. Revisa tu guion</h2>
+
+        <p>
+            Antes de considerar terminado tu primer borrador,
+            revisa estas preguntas:
+        </p>
+
+        <ul>
+            <li>¿La historia tiene un conflicto claro?</li>
+            <li>¿Los personajes quieren algo?</li>
+            <li>¿Sus decisiones hacen avanzar la historia?</li>
+            <li>¿Los diálogos corresponden a los personajes?</li>
+            <li>¿Las acotaciones ayudan a imaginar lo que ocurre en escena?</li>
+            <li>¿Las escenas tienen relación entre sí?</li>
+            <li>¿La historia conserva algún elemento de la memoria o contexto de la comunidad?</li>
+        </ul>
+
+
+        <div class="elemento">
+
+            <div class="pregunta">
+                ¿Qué aspecto de tu guion necesitas mejorar?
+            </div>
+
+            <textarea
+                id="mejorar"
+                placeholder="Explica qué cambiarías después de revisar tu trabajo."
+            ></textarea>
+
+        </div>
+
+
+        <button class="boton" onclick="revisarGuion()">
+            Revisar mi guion
+        </button>
+
+
+        <div id="resultado">
+
+            <h2>Primer borrador de tu guion</h2>
+
+            <p>
+                Has organizado los principales elementos de tu obra.
+                Lee esta información nuevamente y revisa si la historia se entiende
+                de principio a fin.
+            </p>
+
+
+            <div class="guion-final">
+
+                <div class="titulo-guion">
+                    <span id="rTitulo"></span>
+                </div>
+
+
+                <div class="datos-guion">
+
+                    <p>
+                        <strong>Origen de la historia:</strong>
+                        <span id="rOrigen"></span>
+                    </p>
+
+                    <p>
+                        <strong>Personaje principal:</strong>
+                        <span id="rPrincipal"></span>
+                    </p>
+
+                    <p>
+                        <strong>Segundo personaje:</strong>
+                        <span id="rSecundario"></span>
+                    </p>
+
+                </div>
+
+
+                <div class="bloque-guion">
+
+                    <h3>Historia</h3>
+
+                    <p>
+                        <strong>Inicio:</strong>
+                        <span id="rInicio"></span>
+                    </p>
+
+                    <p>
+                        <strong>Conflicto:</strong>
+                        <span id="rConflicto"></span>
+                    </p>
+
+                    <p>
+                        <strong>Desenlace:</strong>
+                        <span id="rDesenlace"></span>
+                    </p>
+
+                </div>
+
+
+                <div class="bloque-guion">
+
+                    <h3>Escenas</h3>
+
+                    <p>
+                        <strong>Escena 1:</strong>
+                        <span id="rAccion1"></span>
+                    </p>
+
+                    <p>
+                        <strong>Escena 2:</strong>
+                        <span id="rAccion2"></span>
+                    </p>
+
+                    <p>
+                        <strong>Escena 3:</strong>
+                        <span id="rAccion3"></span>
+                    </p>
+
+                </div>
+
+
+                <div class="bloque-guion">
+
+                    <h3>Fragmento del guion</h3>
+
+                    <div id="rFragmento"></div>
+
+                </div>
+
+            </div>
+
+
+            <div id="mensaje" class="mensaje"></div>
+
+
+            <div class="nota-final">
+
+                <strong>Siguiente paso:</strong>
+                este borrador todavía puede ser revisado.
+                Después podrás ensayar los diálogos, distribuir los personajes,
+                organizar el espacio y preparar la representación.
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+function obtener(id) {
+    return document.getElementById(id).value.trim();
+}
+
+
+function mostrar(id, texto) {
+    document.getElementById(id).textContent =
+        texto || "No registrado";
+}
+
+
+function mostrarFragmento(texto) {
+
+    const contenedor = document.getElementById("rFragmento");
+
+    contenedor.innerHTML = "";
+
+    if (!texto) {
+
+        contenedor.textContent =
+            "No registraste un fragmento.";
+
+        return;
+    }
+
+
+    const lineas = texto.split("\n");
+
+
+    lineas.forEach(function(linea) {
+
+        const p = document.createElement("p");
+
+        const textoLimpio = linea.trim();
+
+
+        if (
+            textoLimpio.startsWith("(") &&
+            textoLimpio.endsWith(")")
+        ) {
+
+            const span = document.createElement("span");
+
+            span.style.color = "#68615b";
+            span.style.fontStyle = "italic";
+
+            span.textContent = textoLimpio;
+
+            p.appendChild(span);
+
+        } else {
+
+            const partes = textoLimpio.split(":");
+
+
+            if (partes.length > 1) {
+
+                const nombre =
+                    document.createElement("strong");
+
+                nombre.style.color = "#8b4a2f";
+
+                nombre.textContent =
+                    partes[0] + ":";
+
+
+                p.appendChild(nombre);
+
+                p.appendChild(
+                    document.createTextNode(
+                        " " + partes.slice(1).join(":")
+                    )
+                );
+
+            } else {
+
+                p.textContent = textoLimpio;
+
+            }
+
+        }
+
+
+        contenedor.appendChild(p);
+
+    });
+
+}
+
+
+function revisarGuion() {
+
+    const titulo = obtener("titulo");
+    const origen = obtener("origen");
+    const conservar = obtener("conservar");
+    const modificar = obtener("modificar");
+
+    const principal = obtener("principal");
+    const deseoPrincipal = obtener("deseoPrincipal");
+
+    const secundario = obtener("secundario");
+    const deseoSecundario = obtener("deseoSecundario");
+
+    const otros = obtener("otros");
+
+    const inicio = obtener("inicio");
+    const conflicto = obtener("conflicto");
+    const desenlace = obtener("desenlace");
+
+    const lugar1 = obtener("lugar1");
+    const accion1 = obtener("accion1");
+    const personajes1 = obtener("personajes1");
+
+    const lugar2 = obtener("lugar2");
+    const accion2 = obtener("accion2");
+    const personajes2 = obtener("personajes2");
+
+    const lugar3 = obtener("lugar3");
+    const accion3 = obtener("accion3");
+    const personajes3 = obtener("personajes3");
+
+    const fragmento = obtener("fragmento");
+
+    const mejorar = obtener("mejorar");
+
+
+    mostrar("rTitulo", titulo);
+    mostrar("rOrigen", origen);
+    mostrar("rPrincipal", principal);
+    mostrar("rSecundario", secundario);
+
+    mostrar("rInicio", inicio);
+    mostrar("rConflicto", conflicto);
+    mostrar("rDesenlace", desenlace);
+
+    mostrar("rAccion1", accion1);
+    mostrar("rAccion2", accion2);
+    mostrar("rAccion3", accion3);
+
+    mostrarFragmento(fragmento);
+
+
+    const campos = [
+
+        titulo,
+        origen,
+        conservar,
+        modificar,
+
+        principal,
+        deseoPrincipal,
+
+        secundario,
+        deseoSecundario,
+
+        otros,
+
+        inicio,
+        conflicto,
+        desenlace,
+
+        lugar1,
+        accion1,
+        personajes1,
+
+        lugar2,
+        accion2,
+        personajes2,
+
+        lugar3,
+        accion3,
+        personajes3,
+
+        fragmento,
+        mejorar
+
+    ];
+
+
+    const completos =
+        campos.filter(function(campo) {
+            return campo !== "";
+        }).length;
+
+
+    const mensaje =
+        document.getElementById("mensaje");
+
+
+    if (completos >= 20) {
+
+        mensaje.textContent =
+            "Tu primer borrador está bastante desarrollado. Ahora conviene leerlo en voz alta y revisar si cada escena ayuda a contar la historia.";
+
+        mensaje.style.color = "#386641";
+
+    } else if (completos >= 13) {
+
+        mensaje.textContent =
+            "Ya tienes una estructura clara para continuar. Revisa los elementos que quedaron incompletos antes de pasar a los ensayos.";
+
+        mensaje.style.color = "#8b4a2f";
+
+    } else {
+
+        mensaje.textContent =
+            "Tu guion todavía necesita algunos elementos. Completa la estructura y vuelve a revisarlo.";
+
+        mensaje.style.color = "#9b3022";
+
+    }
+
+
+    document.getElementById("resultado").style.display =
+        "block";
+
+
+    document.getElementById("resultado").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
