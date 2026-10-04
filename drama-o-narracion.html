@@ -1,0 +1,645 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>¿Drama o narración?</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #FFF6E8;
+        color: #3D2B24;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 25px;
+    }
+
+    header {
+        background: #E76F3C;
+        color: #FFF6E8;
+        padding: 35px 25px;
+        text-align: center;
+        border-radius: 0 0 25px 25px;
+    }
+
+    header h1 {
+        margin: 0 0 10px;
+        font-size: 2.3rem;
+    }
+
+    header p {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    .mission {
+        background: #FFFFFF;
+        margin-top: 25px;
+        padding: 25px;
+        border-radius: 18px;
+        box-shadow: 0 4px 12px rgba(61,43,36,0.10);
+    }
+
+    .mission h2 {
+        color: #D94F4F;
+        margin-top: 0;
+    }
+
+    .instructions {
+        background: #F4C542;
+        padding: 18px;
+        border-radius: 15px;
+        margin: 20px 0;
+    }
+
+    .progress-container {
+        margin: 25px 0;
+    }
+
+    .progress-text {
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 12px;
+        background: #E7DDC8;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .progress {
+        height: 100%;
+        width: 0%;
+        background: #5E9C62;
+        transition: width 0.4s ease;
+    }
+
+    .fragment {
+        background: #FFFFFF;
+        border-left: 7px solid #E76F3C;
+        padding: 22px;
+        margin: 20px 0;
+        border-radius: 15px;
+        box-shadow: 0 3px 10px rgba(61,43,36,0.08);
+    }
+
+    .fragment-number {
+        font-weight: bold;
+        color: #D94F4F;
+    }
+
+    .fragment-text {
+        font-size: 1.08rem;
+        margin: 15px 0;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    button {
+        border: none;
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn-drama {
+        background: #E76F3C;
+        color: white;
+    }
+
+    .btn-narracion {
+        background: #4E9FAD;
+        color: white;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+    }
+
+    button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .feedback {
+        margin-top: 15px;
+        padding: 15px;
+        border-radius: 12px;
+        display: none;
+    }
+
+    .correct {
+        background: #E1F0E2;
+        border-left: 5px solid #5E9C62;
+    }
+
+    .incorrect {
+        background: #FBE1DD;
+        border-left: 5px solid #D94F4F;
+    }
+
+    .clue {
+        margin-top: 10px;
+        font-size: 0.95rem;
+    }
+
+    .challenge {
+        margin-top: 35px;
+        background: #FFFFFF;
+        padding: 28px;
+        border-radius: 18px;
+        box-shadow: 0 4px 12px rgba(61,43,36,0.10);
+    }
+
+    .challenge h2 {
+        color: #E76F3C;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 180px;
+        padding: 15px;
+        border: 2px solid #E7DDC8;
+        border-radius: 12px;
+        resize: vertical;
+        font-family: inherit;
+        font-size: 1rem;
+        margin-top: 15px;
+    }
+
+    textarea:focus {
+        outline: none;
+        border-color: #E76F3C;
+    }
+
+    .submit {
+        margin-top: 15px;
+        background: #5E9C62;
+        color: white;
+    }
+
+    .result {
+        display: none;
+        margin-top: 30px;
+        padding: 30px;
+        text-align: center;
+        background: #FFF;
+        border-radius: 18px;
+        border-top: 7px solid #F4C542;
+    }
+
+    .score {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #E76F3C;
+    }
+
+    .tip {
+        background: #EAF4F5;
+        border-left: 5px solid #4E9FAD;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 30px 15px;
+        color: #6D5A50;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 1.8rem;
+        }
+
+        .container {
+            padding: 15px;
+        }
+
+        .buttons {
+            flex-direction: column;
+        }
+
+        button {
+            width: 100%;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎭 ¿Drama o narración?</h1>
+    <p>Primera misión de <strong>Historias de mi tierra</strong></p>
+</header>
+
+<div class="container">
+
+    <section class="mission">
+        <h2>🎬 Tu primera misión</h2>
+
+        <p>
+            Las historias pueden contarse de muchas maneras.
+            Algunas se narran; otras están escritas para ser representadas.
+        </p>
+
+        <p>
+            En esta misión tendrás que descubrir
+            <strong>qué pistas permiten reconocer un texto dramático.</strong>
+        </p>
+
+        <div class="instructions">
+            <strong>🔎 ¿Qué debes hacer?</strong><br>
+            Lee cada fragmento y decide si pertenece a una
+            <strong>narración</strong> o a un <strong>texto dramático</strong>.
+        </div>
+    </section>
+
+
+    <section class="mission">
+
+        <div class="progress-container">
+            <div class="progress-text">
+                Progreso: <span id="progressText">0 de 6</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+
+
+        <!-- FRAGMENTO 1 -->
+
+        <div class="fragment">
+            <div class="fragment-number">Fragmento 1</div>
+
+            <div class="fragment-text">
+                Juan caminó rápidamente hacia la casa de su abuela.
+                Estaba preocupado porque el cielo comenzaba a oscurecerse.
+            </div>
+
+            <div class="buttons">
+                <button class="btn-narracion"
+                    onclick="checkAnswer(1, 'narracion', this)">
+                    📖 Narración
+                </button>
+
+                <button class="btn-drama"
+                    onclick="checkAnswer(1, 'drama', this)">
+                    🎭 Teatro
+                </button>
+            </div>
+
+            <div id="feedback1" class="feedback"></div>
+        </div>
+
+
+        <!-- FRAGMENTO 2 -->
+
+        <div class="fragment">
+            <div class="fragment-number">Fragmento 2</div>
+
+            <div class="fragment-text">
+                <strong>JUAN:</strong> Abuela, ¿todavía estás ahí?<br>
+                <strong>ABUELA:</strong> ¡Estoy en la cocina! ¿Qué sucede?
+            </div>
+
+            <div class="buttons">
+                <button class="btn-narracion"
+                    onclick="checkAnswer(2, 'narracion', this)">
+                    📖 Narración
+                </button>
+
+                <button class="btn-drama"
+                    onclick="checkAnswer(2, 'drama', this)">
+                    🎭 Teatro
+                </button>
+            </div>
+
+            <div id="feedback2" class="feedback"></div>
+        </div>
+
+
+        <!-- FRAGMENTO 3 -->
+
+        <div class="fragment">
+            <div class="fragment-number">Fragmento 3</div>
+
+            <div class="fragment-text">
+                <em>
+                    (Juan entra corriendo y deja el morral junto a la puerta.)
+                </em>
+            </div>
+
+            <div class="buttons">
+                <button class="btn-narracion"
+                    onclick="checkAnswer(3, 'narracion', this)">
+                    📖 Narración
+                </button>
+
+                <button class="btn-drama"
+                    onclick="checkAnswer(3, 'drama', this)">
+                    🎭 Teatro
+                </button>
+            </div>
+
+            <div id="feedback3" class="feedback"></div>
+        </div>
+
+
+        <!-- FRAGMENTO 4 -->
+
+        <div class="fragment">
+            <div class="fragment-number">Fragmento 4</div>
+
+            <div class="fragment-text">
+                María recordó aquella tarde durante muchos años.
+                Había sido el día en que aprendió a montar a caballo.
+            </div>
+
+            <div class="buttons">
+                <button class="btn-narracion"
+                    onclick="checkAnswer(4, 'narracion', this)">
+                    📖 Narración
+                </button>
+
+                <button class="btn-drama"
+                    onclick="checkAnswer(4, 'drama', this)">
+                    🎭 Teatro
+                </button>
+            </div>
+
+            <div id="feedback4" class="feedback"></div>
+        </div>
+
+
+        <!-- FRAGMENTO 5 -->
+
+        <div class="fragment">
+            <div class="fragment-number">Fragmento 5</div>
+
+            <div class="fragment-text">
+                <strong>PEDRO:</strong> No puedes llevarte el caballo.<br>
+                <strong>LUIS:</strong> ¿Y quién va a detenerme?
+            </div>
+
+            <div class="buttons">
+                <button class="btn-narracion"
+                    onclick="checkAnswer(5, 'narracion', this)">
+                    📖 Narración
+                </button>
+
+                <button class="btn-drama"
+                    onclick="checkAnswer(5, 'drama', this)">
+                    🎭 Teatro
+                </button>
+            </div>
+
+            <div id="feedback5" class="feedback"></div>
+        </div>
+
+
+        <!-- FRAGMENTO 6 -->
+
+        <div class="fragment">
+            <div class="fragment-number">Fragmento 6</div>
+
+            <div class="fragment-text">
+                El hombre miró hacia el camino.
+                Nadie había llegado todavía y la lluvia comenzaba a caer.
+            </div>
+
+            <div class="buttons">
+                <button class="btn-narracion"
+                    onclick="checkAnswer(6, 'narracion', this)">
+                    📖 Narración
+                </button>
+
+                <button class="btn-drama"
+                    onclick="checkAnswer(6, 'drama', this)">
+                    🎭 Teatro
+                </button>
+            </div>
+
+            <div id="feedback6" class="feedback"></div>
+        </div>
+
+    </section>
+
+
+    <!-- RETO FINAL -->
+
+    <section class="challenge">
+
+        <h2>🎬 Reto del dramaturgo</h2>
+
+        <p>
+            Ahora demuestra que comprendiste la diferencia.
+        </p>
+
+        <p>
+            Lee esta pequeña narración:
+        </p>
+
+        <div class="instructions">
+            <strong>
+                “Camila llegó a la casa de su vecino para pedirle ayuda.
+                Había perdido una ternera y pensaba que podía estar cerca del río.”
+            </strong>
+        </div>
+
+        <p>
+            <strong>Transforma esta narración en una pequeña escena teatral.</strong>
+        </p>
+
+        <p>
+            Intenta incluir:
+        </p>
+
+        <ul>
+            <li>👤 Al menos dos personajes.</li>
+            <li>💬 Diálogo entre los personajes.</li>
+            <li>🎬 Una acotación.</li>
+            <li>⚡ Algún elemento de tensión o conflicto.</li>
+        </ul>
+
+        <textarea id="respuesta"
+            placeholder="Escribe aquí tu escena..."></textarea>
+
+        <button class="submit" onclick="finishChallenge()">
+            🎭 Terminé mi escena
+        </button>
+
+    </section>
+
+
+    <section class="result" id="result">
+
+        <h2>🌟 ¡Misión completada!</h2>
+
+        <div class="score" id="score"></div>
+
+        <p id="message"></p>
+
+        <div class="tip">
+            <strong>Recuerda:</strong><br>
+            Un texto dramático está pensado para ser representado.
+            Por eso encontramos personajes, diálogos, acciones,
+            acotaciones, espacio, tiempo y situaciones de conflicto.
+        </div>
+
+        <p>
+            Tu próxima misión será descubrir
+            <strong>qué elementos hacen que una escena cobre vida.</strong>
+        </p>
+
+    </section>
+
+</div>
+
+
+<footer>
+    🎭 Historias de mi tierra · Proyecto de género dramático
+</footer>
+
+
+<script>
+
+const answers = {
+    1: "narracion",
+    2: "drama",
+    3: "drama",
+    4: "narracion",
+    5: "drama",
+    6: "narracion"
+};
+
+const clues = {
+    1: "El fragmento cuenta lo que hace un personaje mediante un narrador.",
+    2: "Los personajes hablan directamente mediante diálogos.",
+    3: "El texto indica una acción que puede representarse en escena.",
+    4: "Un narrador cuenta lo que recuerda el personaje.",
+    5: "Dos personajes intervienen directamente mediante el diálogo.",
+    6: "Un narrador describe lo que ocurre."
+};
+
+let answered = 0;
+let correct = 0;
+let completed = {};
+
+function checkAnswer(number, answer, button) {
+
+    if (completed[number]) {
+        return;
+    }
+
+    completed[number] = true;
+    answered++;
+
+    const feedback = document.getElementById("feedback" + number);
+    const fragment = button.closest(".fragment");
+
+    const buttons = fragment.querySelectorAll("button");
+    buttons.forEach(btn => btn.disabled = true);
+
+    if (answer === answers[number]) {
+
+        correct++;
+
+        feedback.className = "feedback correct";
+        feedback.innerHTML =
+            "✅ <strong>¡Correcto!</strong><br>" +
+            clues[number];
+
+    } else {
+
+        feedback.className = "feedback incorrect";
+        feedback.innerHTML =
+            "🔎 <strong>Casi.</strong><br>" +
+            "Observa nuevamente las pistas del texto.<br>" +
+            clues[number];
+    }
+
+    feedback.style.display = "block";
+
+    updateProgress();
+
+    if (answered === 6) {
+        document.getElementById("result").style.display = "block";
+
+        document.getElementById("score").innerText =
+            correct + " / 6 respuestas correctas";
+
+        if (correct === 6) {
+            document.getElementById("message").innerText =
+                "¡Excelente! Reconociste las principales pistas que diferencian la narración del texto dramático.";
+        } else if (correct >= 4) {
+            document.getElementById("message").innerText =
+                "¡Muy bien! Ya reconoces varias características del texto dramático. Revisa las pistas de las respuestas que fallaste.";
+        } else {
+            document.getElementById("message").innerText =
+                "Buen comienzo. Observa especialmente los diálogos y las acotaciones: serán muy importantes en las próximas misiones.";
+        }
+    }
+}
+
+function updateProgress() {
+
+    document.getElementById("progressText").innerText =
+        answered + " de 6";
+
+    document.getElementById("progress").style.width =
+        ((answered / 6) * 100) + "%";
+}
+
+function finishChallenge() {
+
+    const response =
+        document.getElementById("respuesta").value.trim();
+
+    if (response.length < 30) {
+
+        alert(
+            "Tu escena todavía es muy corta. Intenta escribir al menos algunos diálogos y una acotación."
+        );
+
+        return;
+    }
+
+    alert(
+        "🎭 ¡Escena creada! Recuerda que esta producción es tuya: tú decides qué conservar, cambiar o mejorar."
+    );
+}
+
+</script>
+
+</body>
+</html>
+```
